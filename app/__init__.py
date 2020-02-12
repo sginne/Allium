@@ -3,12 +3,15 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 db=SQLAlchemy()
+
 from . import models
+from . import routes
 
 
-app = Flask(__name__, static_folder='./static/',)
+
+app = Flask(__name__, static_folder='./static/')
+app.config.from_pyfile('../allium.cfg')
 db.init_app(app)
-app.config.from_pyfile('allium.cfg')
 @app.route('/')
 def hello_world():
     db.create_all()
