@@ -12,6 +12,8 @@ from . import routes
 app = Flask(__name__, static_folder='./static/')
 app.config.from_pyfile('../allium.cfg')
 db.init_app(app)
+
+app.register_blueprint(routes.admin.admin_blueprint)
 @app.route('/')
 def hello_world():
     db.create_all()
