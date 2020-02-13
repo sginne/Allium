@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Admin console - {{config['ALLIUM_TITLE']}}</title>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/spectre.css') }}">
 
 </head>
 <body>
-    {% include "elements/header.html" %}
-    <header class="navbar">
-        <span class="navbar-brand mr-10">Project name</span>
-        <a class="badge" href="/logout">Logout</a>
+    <header class="navbar bg-gray">
+        {% include "elements/header.html" %}
+        <a class="nav-item">
+            #todo menu
+        </a>
+        <section class="navbar-center">&nbsp;</section>
+        <a class="nav-item btn btn-sm" href="/logout">Logout</a>
     </header>
 </body>
 </html>
