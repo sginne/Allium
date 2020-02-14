@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin console - {{config['ALLIUM_TITLE']}}</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/spectre.css') }}">
+
+</head>
+<body>
+    <header class="bg-gray">
+        {% include config['TEMPLATE_NAME'] ~ "/elements/header.html" %}
+        {% include config['TEMPLATE_NAME'] ~ "/elements/admin-menu.html" %}
+
+    </header>
+</body>
+</html>
