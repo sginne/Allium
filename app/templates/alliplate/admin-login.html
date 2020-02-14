@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin console - {{config['ALLIUM_TITLE']}}</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/spectre.css') }}">
+
+</head>
+<body>
+    <div class="s-rounded">
+        <form class="form-group" method="POST">
+            <label class="form-label" for="master-key" name="{{ form.master_key.description }}">Master password:</label>
+            <input class="form-input" type="text" id="master-key" name="{{form.master_key.name}}">
+            <input type="submit" class="btn btn-primary">
+        </form>
+    </div>
+</body>
+</html>
