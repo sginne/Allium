@@ -19,7 +19,3 @@ db.init_app(app) #db for app
 Session(app) #Session
 
 app.register_blueprint(routes.admin.admin_blueprint) #registering blueprints for admin
-@app.route('/')
-def hello_world():
-    db.create_all()
-    return render_template('base.html')
