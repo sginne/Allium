@@ -16,6 +16,5 @@ app = Flask(__name__, static_folder='./static/') #here flask is born
 app.config.from_pyfile('../allium.cfg') #parse config into flask
 
 db.init_app(app) #db for app
-Session(app) #Session
 
 app.register_blueprint(routes.admin.admin_blueprint) #registering blueprints for admin
