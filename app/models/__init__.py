@@ -6,8 +6,9 @@ class Goods(db.Model):
     """
     Class of goods to trade
     """
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     names = db.Column(db.String(64))
+    description = db.Column(db.String(4096))
     picture = app.image_attachment('Image')
     __tablename__="goods"
 class GoodsPicture(db.Model, app.Image):
