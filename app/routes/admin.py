@@ -52,7 +52,7 @@ def add_item():
             description=TextAreaField('Description:')
             submit = SubmitField('Add')
         add_form=AddForm()
-        return render_template(app.config['TEMPLATE_NAME'] + '/admin-add.html', config=app.config,active="admin-add",form=add_form)
+        return render_template(app.config['TEMPLATE_NAME'] + '/admin-add.html', config=app.config,active="add-good",form=add_form)
     else:
         return redirect('/admin')
 
