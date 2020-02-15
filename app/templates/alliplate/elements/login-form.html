@@ -1,7 +1,9 @@
-    <div class="s-rounded">
+    <div style="position: absolute;left: 50%; top:50%; width:40%; transform: translate(-50%,-50%)">
+    <div class="card s-rounded flex-centered">
         <form class="form-group" method="POST">
-            <label class="form-label" for="master-key" name="{{ form.master_key.description }}">Master password:</label>
-            <input class="form-input" type="text" id="master-key" name="{{form.master_key.name}}">
+            <label class="form-label" for="master-key" ">{{ form.master_key.label }}</label>
+            <input class="form-input" type="password" id="master-key" name="{{form.master_key.name}}">
             <input type="submit" class="btn btn-primary">
         </form>
+    </div>
     </div>
