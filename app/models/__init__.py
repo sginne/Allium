@@ -1,18 +1,24 @@
 from app import db
 import app
-all_tables=["goods","good_picture"]
+
+all_tables=["items","pictures","picture_containers"]
 #goods
-class Goods(db.Model):
+class Item(db.Model):
     """
-    Class of goods to trade
+    Item model
     """
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
-    names = db.Column(db.String(64))
+    name = db.Column(db.String(64),unique=True)
     description = db.Column(db.String(4096))
-    picture = app.image_attachment('Image')
-    __tablename__="goods"
-class GoodsPicture(db.Model, app.Image):
-    """Goods picture model."""
-    good_id = db.Column(db.Integer, db.ForeignKey('goods.id'), primary_key=True)
-    good_picture = app.relationship('Goods')
-    __tablename__ = 'good_picture'
+    __tablename__="items"
+class Picture(db.Model):
+    """Picture model."""
+    id = db.Column(db.Integer, primary_key=True,autoincrement=True)
+    name = db.Column(db.Unicode, nullable=False)
+    picture =  app.image_attachment('PictureContainer')
+    __tablename__ = 'pictures'
+class PictureContainer(db.Model,app.Image):
+    """Picture container model."""
+    picture_id=db.Column(db.Integer,db.ForeignKey('pictures.id'),primary_key=True)
+    picture=db.relationship("Picture")
+    __tablename__ ='picture_containers'

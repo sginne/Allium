@@ -3,6 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import TextAreaField,StringField,SubmitField,PasswordField,TextField
 from flask import current_app as app
 import hashlib
+from app import db,models
 
 def password_hashing(password):
     """
@@ -40,7 +41,7 @@ def admin():
             return render_template(app.config['TEMPLATE_NAME']+'/admin-login.html',form=validation_form)
 
 
-@admin_blueprint.route('/admin_add')
+@admin_blueprint.route('/admin_add',methods=['POST','GET'])
 def add_item():
     """
     route for adding item to database
@@ -52,7 +53,16 @@ def add_item():
             description=TextAreaField('Description:')
             submit = SubmitField('Add')
         add_form=AddForm()
-        return render_template(app.config['TEMPLATE_NAME'] + '/admin-add.html', config=app.config,active="add-good",form=add_form)
+        if request.method=='POST':
+            #adding item?
+            new_item=models.Item(name=add_form.name.data,description=add_form.description.data)
+            #print(new_item.insert())
+            db.session.add(new_item)
+            #db.session.flush()
+            db.session.commit()
+            return abort(408)
+        else:
+            return render_template(app.config['TEMPLATE_NAME'] + '/admin-add.html', config=app.config,active="add-good",form=add_form)
     else:
         return redirect('/admin')
 
