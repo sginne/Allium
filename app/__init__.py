@@ -23,6 +23,7 @@ db.init_app(app) #db for app
 with app.app_context():
     for table in models.all_tables:
         if not db.engine.has_table(table):
+            db.drop_all()
             db.create_all()
             db.session.commit()
             pass
