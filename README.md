@@ -1,5 +1,5 @@
 # AlliumShop (works for deepweb too)
-![AlliumShop]()
+![AlliumShop](https://github.com/sginne/Allium/raw/master/app/static/img/allium-logo.png)
 
 ## Introduction
 
