@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <title>Admin console - {{config['ALLIUM_TITLE']}}</title>
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/spectre.css') }}">
-
+{% include config['TEMPLATE_NAME'] ~ "/elements/head.html" %}
 </head>
 <body>
     <header class="bg-gray">
