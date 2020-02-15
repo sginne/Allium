@@ -1,13 +1,18 @@
 <section class="navbar-section">
-    <a class="nav-item" href="#">
+    <a class="" href="#">
         Modify object
     </a>
     |
-    <a class="nav-item{% if active == 'admin-add' %} bg-success{% endif %}" href="/admin_add">
+    <a class="{% if active == 'admin-add' %} text-light bg-success{% endif %}" href="/admin_add">
         Add item
     </a>
-    |
-    <a class="nav-item text-warning" href="/logout">
+
+    <a class="text-warning" href="/logout">
+        Logoutzzz
+    </a>
+</section>
+<section class="navbar-center">
+    <a class="text-warning" href="/logout">
         Logout
     </a>
 </section>
