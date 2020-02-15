@@ -1,10 +1,10 @@
 <section class="navbar-section">
-    <a class="nav-item" href="/admin_add">
-        Add item
+    <a class="nav-item" href="#">
+        Modify object
     </a>
     |
-    <a class="nav-item">
-        Change name
+    <a class="nav-item{% if active == 'admin-add' %} bg-success{% endif %}" href="/admin_add">
+        Add item
     </a>
     |
     <a class="nav-item text-warning" href="/logout">
