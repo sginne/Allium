@@ -1,17 +1,31 @@
 <section class="navbar-section">
-    <a class="" href="#">
-        Modify object
+    Admin menu:
+    <a class="{% if active == 'modify-good' %} text-light bg-success{% endif %}" href="#">
+        Modify/Delete item
     </a>
     |
-    <a class="{% if active == 'admin-add' %} text-light bg-success{% endif %}" href="/admin_add">
+    <a class="{% if active == 'add-good' %} text-light bg-success{% endif %}" href="/admin_add">
         Add item
     </a>
-    |
+
+       |
+        <a class="{% if active == 'modify-picture' %} text-light bg-success{% endif %}" href="/admin_modify_picture">
+        Modify/Delete picture
+    </a>
+ |
+
+
+    <a class="{% if active == 'add-picture' %} text-light bg-success{% endif %}" href="/admin_add_picture">
+        Add picture
+    </a>
+ |
+
+
     <a class="text-warning" href="/logout">
         Logout
     </a>
     |
-    <a class="text-error" href="/reset">
+    &#9762;&#9762;<a class="text-error" href="/reset">
         Panic reset
-    </a>
+    </a>&#9762;&#9762;
 </section>
