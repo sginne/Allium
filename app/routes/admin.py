@@ -56,11 +56,10 @@ def add_item():
         if request.method=='POST':
             #adding item?
             new_item=models.Item(name=add_form.name.data,description=add_form.description.data)
-            #print(new_item.insert())
+
             db.session.add(new_item)
-            #db.session.flush()
             db.session.commit()
-            return abort(408)
+            return abort(200)
         else:
             return render_template(app.config['TEMPLATE_NAME'] + '/admin-add.html', config=app.config,active="add-good",form=add_form)
     else:
