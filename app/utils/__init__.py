@@ -11,7 +11,7 @@ def markup(string_to_parse):
     found_matches=re.findall(bold_re,string_to_parse)
     for match in found_matches:
         string_to_parse=string_to_parse.replace(match[0],"<strong>"+match[1]+"</strong>")
-    return string_to_parse
+    return string_to_parse.replace("\n","<br>")
 def markup_list_descriptions(items_list):
     return_items=[]
     for item in items_list:
