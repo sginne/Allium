@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, session, request, make_response,abort,redirect
+from flask import Response,Blueprint, render_template, session, request, make_response,abort,redirect
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField,StringField,SubmitField,PasswordField,TextField
 from flask import current_app as app
+from flask import current_app
 import hashlib
 from app import db,models
 
@@ -23,7 +24,8 @@ def admin():
 
     if request.cookies.get('masterkey') == password_hashing(app.config['MASTER_PASSWORD']):
         #authorized
-        return render_template(app.config['TEMPLATE_NAME']+'/admin.html',config=app.config)
+        items = models.Item.query.all()
+        return render_template(app.config['TEMPLATE_NAME']+'/admin.html',config=app.config,active="admin-console",items=items)
     else:
         # fixme add sessions for security, maybe
         #not authorized, may by form posted
@@ -38,6 +40,7 @@ def admin():
             return response
         else:
             #return login form
+
             return render_template(app.config['TEMPLATE_NAME']+'/admin-login.html',form=validation_form)
 
 
@@ -59,12 +62,18 @@ def add_item():
 
             db.session.add(new_item)
             db.session.commit()
-            return abort(200)
+            return redirect('/admin')
         else:
             return render_template(app.config['TEMPLATE_NAME'] + '/admin-add.html', config=app.config,active="add-good",form=add_form)
     else:
         return redirect('/admin')
-
+@admin_blueprint.route('/reset')
+def  reset():
+    if request.cookies.get('masterkey') == password_hashing(app.config['MASTER_PASSWORD']):
+        db.drop_all()
+        db.create_all()
+        db.session.commit()
+    return redirect('/admin')
 @admin_blueprint.route('/logout')
 def logout():
     """
