@@ -25,6 +25,8 @@ def admin():
     if request.cookies.get('masterkey') == password_hashing(app.config['MASTER_PASSWORD']):
         #authorized
         items = models.Item.query.all()
+        from .. import utils
+        items=utils.markup_list_descriptions(items)
         return render_template(app.config['TEMPLATE_NAME']+'/admin.html',config=app.config,active="admin-console",items=items)
     else:
         # fixme add sessions for security, maybe
@@ -67,9 +69,19 @@ def add_item():
             return render_template(app.config['TEMPLATE_NAME'] + '/admin-add.html', config=app.config,active="add-good",form=add_form)
     else:
         return redirect('/admin')
+
+@admin_blueprint.route('/admin_add_picture')
+def add_picture():
+    return abort(400)
+
+
 @admin_blueprint.route('/reset')
 def  reset():
+    """
+    Resetting database here, dangerous operation - #fixme
+    """
     if request.cookies.get('masterkey') == password_hashing(app.config['MASTER_PASSWORD']):
+        # authorized
         db.drop_all()
         db.create_all()
         db.session.commit()
