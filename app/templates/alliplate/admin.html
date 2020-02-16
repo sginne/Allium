@@ -22,7 +22,7 @@
                         {{item.name}}
                     </td>
                     <td>
-                        {{item.description}}
+                        {{item.description|safe}}
                     </td>
                 </tr>
             {% endfor %}
