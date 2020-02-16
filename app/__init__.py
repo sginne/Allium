@@ -20,13 +20,15 @@ app.config.from_pyfile('../allium.cfg') #parse config into flask
 
 db.init_app(app) #db for app
 
+def reset_database():
+    db.drop_all()
+    db.create_all()
+    db.session.commit()
 #checking for db and tables
 with app.app_context():
     for table in models.all_tables:
         if not db.engine.has_table(table):
-            db.drop_all()
-            db.create_all()
-            db.session.commit()
+            reset_database()
             pass
 
 
