@@ -29,8 +29,7 @@ def reset_database():
 with app.app_context():
     for table in models.all_tables:
         if not db.engine.has_table(table):
-            reset_database()
-            pass
+            db.create_all()
 
 
 app.register_blueprint(routes.admin.admin_blueprint) #registering blueprints for admin
