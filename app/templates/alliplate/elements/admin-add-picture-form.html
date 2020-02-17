@@ -1,11 +1,14 @@
-    <canvas style="border:1px solid grey;" id="my_canvas" width="300" height="300"></canvas>
     <div class="flex-centered">
+        <canvas style="border:1px solid grey;" id="img_canvas" width="500" height="250"></canvas>
+
         <div style="width: 90%;" class="card s-rounded">
             <br />
-<           textarea placeholder="Pasting text should work here"></textarea>
-            <form id ="new_picture_attachment"class="form-group" method="POST">
+            <textarea placeholder="Pasting text should work here"></textarea>
+            <form id="new_picture_attachment" class="form-group" method="POST" onsubmit="prepareImg()">
                 <label class="form-label" for="master-key"></label>
                 <input class="form-input" type="text" id="master-key" name="">
+                <input id="inp_img" name="{{form.picture.name}}" type="hidden" value="">
+
                 <input type="file" id="picture_attachment_doc" />
 
                 <input type="submit" class="btn btn-primary">
@@ -13,7 +16,12 @@
         </div>
     </div>
 <script>
-var CLIPBOARD = new CLIPBOARD_CLASS("my_canvas", false);
+
+function prepareImg() {
+   var canvas = document.getElementById('img_canvas');
+   document.getElementById('inp_img').value = canvas.toDataURL();
+}
+var CLIPBOARD = new CLIPBOARD_CLASS("img_canvas", false);
 
 /**
  * image pasting into canvas
@@ -71,18 +79,3 @@ function CLIPBOARD_CLASS(canvas_id, autoresize) {
 	};
 }
 </script>
-
-    <div class="flex-centered">
-        <div style="width: 90%;" class="card s-rounded">
-            <canvas style="border:1px solid grey;" id="my_canvas" width="500" height="500"></canvas>
-            <br />
-<           textarea placeholder="Pasting text should work here"></textarea>
-            <form id ="new_picture_attachment"class="form-group" method="POST">
-                <label class="form-label" for="master-key"></label>
-                <input class="form-input" type="text" id="master-key" name="">
-                <input type="file" id="picture_attachment_doc" />
-
-                <input type="submit" class="btn btn-primary">
-            </form>
-        </div>
-    </div>
