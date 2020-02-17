@@ -16,10 +16,11 @@ class Picture(db.Model):
     """Picture model."""
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     name = db.Column(db.Unicode, nullable=False)
-    picture =  app.image_attachment('PictureContainer')
+
+    picture =  db.Column(db.Text)
     __tablename__ = 'pictures'
-class PictureContainer(db.Model,app.Image):
-    """Picture container model."""
-    picture_id=db.Column(db.Integer,db.ForeignKey('pictures.id'),primary_key=True)
-    picture=db.relationship("Picture")
-    __tablename__ ='picture_containers'
+#class PictureContainer(db.Model,app.Image):
+#    """Picture container model."""
+#    picture_id=db.Column(db.Integer,db.ForeignKey('pictures.id'),primary_key=True)
+#    picture=db.relationship("Picture")
+#    __tablename__ ='picture_containers'
