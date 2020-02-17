@@ -8,14 +8,14 @@ class Item(db.Model):
     Item model
     """
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
-    name = db.Column(db.String(64))
+    name = db.Column(db.String(64),nullable=False)
     description = db.Column(db.String(4096))
 
     __tablename__="items"
 class Picture(db.Model):
     """Picture model."""
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
-    name = db.Column(db.Unicode, nullable=False)
+    name = db.Column(db.String(64), nullable=False)
 
     picture =  db.Column(db.Text)
     __tablename__ = 'pictures'
