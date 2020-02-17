@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+{% include config['TEMPLATE_NAME'] ~ "/elements/head.html" %}
+</head>
+<body>
+<header class="bg-gray">
+        {% include config['TEMPLATE_NAME'] ~ "/elements/header.html" %}
+        {% include config['TEMPLATE_NAME'] ~ "/elements/admin-menu.html" %}
+    </header>
+        {% include config['TEMPLATE_NAME'] ~ "/elements/admin-add-picture-form.html" %}
+</body>
+</html>

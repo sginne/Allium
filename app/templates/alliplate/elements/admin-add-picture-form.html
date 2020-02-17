@@ -1,0 +1,24 @@
+<script>
+    const form = document.getElementById("new_picture_attachment");
+    const fileInput = document.getElementById("picture_attachment_doc");
+
+    fileInput.addEventListener('change', () => {
+        form.submit();
+    } );
+
+    window.addEventListener('paste', e => {
+        fileInput.files = e.clipboardData.files;
+    });
+</script>
+
+    <div class="flex-centered">
+        <div style="width: 90%;" class="card s-rounded">
+            <form id ="new_picture_attachment"class="form-group" method="POST">
+                <label class="form-label" for="master-key"></label>
+                <input class="form-input" type="text" id="master-key" name="">
+                <input type="file" id="picture_attachment_doc" />
+
+                <input type="submit" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
