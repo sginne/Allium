@@ -85,12 +85,18 @@ def add_picture():
             new_item=models.Picture(name=add_picture_form.name.data,picture=add_picture_form.picture.data)
             db.session.add(new_item)
             db.session.commit()
-            return redirect('/admin')
+            return redirect('/admin_modify_picture')
 
         return render_template(app.config['TEMPLATE_NAME'] + '/admin-add-picture.html', config=app.config, active="add-picture",form=add_picture_form)
 
     else:
         return redirect('/admin')
+
+@admin_blueprint.route('/admin_modify_picture')
+def modify_picture():
+    pictures=models.Picture.query.all()
+
+    return render_template(app.config['TEMPLATE_NAME'] + '/admin-modify-picture.html', config=app.config, active="modify-picture",pictures=pictures)
 
 
 @admin_blueprint.route('/reset')
