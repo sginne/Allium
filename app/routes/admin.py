@@ -1,6 +1,6 @@
 from flask import Response,Blueprint, render_template, session, request, make_response,abort,redirect
 from flask_wtf import FlaskForm
-from wtforms import TextAreaField,StringField,SubmitField,PasswordField,TextField
+from wtforms import TextAreaField,StringField,SubmitField,PasswordField,TextField,HiddenField
 from flask import current_app as app
 from flask import current_app
 import hashlib
@@ -70,13 +70,20 @@ def add_item():
     else:
         return redirect('/admin')
 
-@admin_blueprint.route('/admin_add_picture')
+@admin_blueprint.route('/admin_add_picture',methods=['POST','GET'])
 def add_picture():
     """
     route for adding picture
     """
     if request.cookies.get('masterkey') == password_hashing(app.config['MASTER_PASSWORD']):
-        return render_template(app.config['TEMPLATE_NAME'] + '/admin-add-picture.html', config=app.config, active="add-picture")
+        class AddPictureForm(FlaskForm):
+            name=StringField('Item name:')
+            picture=HiddenField('Picture')
+            submit = SubmitField('Add')
+        add_picture_form=AddPictureForm()
+        if request.method == 'POST':
+            print(add_picture_form.picture.data) #todo process base64 to sql
+        return render_template(app.config['TEMPLATE_NAME'] + '/admin-add-picture.html', config=app.config, active="add-picture",form=add_picture_form)
 
     else:
         return redirect('/admin')
