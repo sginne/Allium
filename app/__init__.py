@@ -12,8 +12,8 @@ db=SQLAlchemy() #db by SQLAlchemy
 from . import models #database models
 from . import routes #blueprints
 from . import utils
-import sys
-sys.path.insert(0, './utils/')
+
+
 
 app = Flask(__name__, static_folder='./static/') #here flask is born
 
