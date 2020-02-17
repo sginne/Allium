@@ -72,7 +72,14 @@ def add_item():
 
 @admin_blueprint.route('/admin_add_picture')
 def add_picture():
-    return abort(400)
+    """
+    route for adding picture
+    """
+    if request.cookies.get('masterkey') == password_hashing(app.config['MASTER_PASSWORD']):
+        return render_template(app.config['TEMPLATE_NAME'] + '/admin-add-picture.html', config=app.config, active="add-picture")
+
+    else:
+        return redirect('/admin')
 
 
 @admin_blueprint.route('/reset')
