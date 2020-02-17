@@ -82,7 +82,11 @@ def add_picture():
             submit = SubmitField('Add')
         add_picture_form=AddPictureForm()
         if request.method == 'POST':
-            print(add_picture_form.picture.data) #todo process base64 to sql
+            new_item=models.Picture(name=add_picture_form.name.data,picture=add_picture_form.picture.data)
+            db.session.add(new_item)
+            db.session.commit()
+            return redirect('/admin')
+
         return render_template(app.config['TEMPLATE_NAME'] + '/admin-add-picture.html', config=app.config, active="add-picture",form=add_picture_form)
 
     else:
