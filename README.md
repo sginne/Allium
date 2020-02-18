@@ -1,6 +1,6 @@
 ![AlliumShop](https://github.com/sginne/Allium/blob/master/app/static/github-logo.png?raw=true)
 
-*clearnet or deepweb - your keys are yours, no blockchain*
+*clearnet or deepweb - your keys are yours, no blockchain downloading. full control for no price*
 
 ## Introduction
 
