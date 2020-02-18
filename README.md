@@ -1,4 +1,5 @@
-# ![AlliumShop](https://github.com/sginne/Allium/raw/master/app/static/img/allium-logo.png)AlliumShop (works for deepweb too)
+# ![AlliumShop](https://github.com/sginne/Allium/blob/master/app/static/github-logo.png?raw=true)
+# AlliumShop - lightweight shop accepting only cryptocurrenct
 
 ## Introduction
 
