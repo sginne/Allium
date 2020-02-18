@@ -14,6 +14,8 @@ from . import routes #blueprints
 from . import utils
 
 
+
+
 with open("allium.cfg") as config_file:
     for line in config_file:
         if line.find('TEMPLATE_NAME') != -1:
@@ -36,3 +38,5 @@ with app.app_context():
 
 
 app.register_blueprint(routes.admin.admin_blueprint) #registering blueprints for admin
+app.register_blueprint(routes.admin_item.admin_item_blueprint) #registering blueprints for admin_item
+app.register_blueprint(routes.admin_pictures.admin_picture_blueprint) #registering blueprints for admin_item
