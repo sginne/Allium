@@ -1,5 +1,7 @@
 ![AlliumShop](https://github.com/sginne/Allium/blob/master/app/static/github-logo.png?raw=true)
-#(works in clearnet or deepweb)
+
+# (works in clearnet or deepweb)
+
 ## Introduction
 
 **Alliu₷hop** is small, lightweight shopping system supporting ONLY cryptocurrencies.
