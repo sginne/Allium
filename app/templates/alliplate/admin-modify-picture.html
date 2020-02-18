@@ -8,9 +8,9 @@
         {% include config['TEMPLATE_NAME'] ~ "/elements/header.html" %}
         {% include config['TEMPLATE_NAME'] ~ "/elements/admin-menu.html" %}
     </header>
-{% for picture in pictures %}
-    <img src="{{picture.picture}}">
-{% endfor %}
+
+    {% include config['TEMPLATE_NAME'] ~ "/elements/admin-picture-card.html" %}
+
 
 
 </body>
