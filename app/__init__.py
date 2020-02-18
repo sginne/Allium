@@ -14,8 +14,11 @@ from . import routes #blueprints
 from . import utils
 
 
-
-app = Flask(__name__, static_folder='./static/') #here flask is born
+with open("allium.cfg") as config_file:
+    for line in config_file:
+        if line.find('TEMPLATE_NAME') != -1:
+            template_name=line.split('"')[1::2][0]
+app = Flask(__name__, static_folder='./templates/'+template_name+'/static/') #here flask is born
 
 app.config.from_pyfile('../allium.cfg') #parse config into flask
 
