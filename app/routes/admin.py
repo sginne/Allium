@@ -94,9 +94,14 @@ def add_picture():
 
 @admin_blueprint.route('/admin_modify_picture')
 def modify_picture():
-    pictures=models.Picture.query.all()
-
-    return render_template(app.config['TEMPLATE_NAME'] + '/admin-modify-picture.html', config=app.config, active="modify-picture",pictures=pictures)
+    """
+    route to modify picture
+    """
+    if request.cookies.get('masterkey') == password_hashing(app.config['MASTER_PASSWORD']):
+        pictures=models.Picture.query.all()
+        return render_template(app.config['TEMPLATE_NAME'] + '/admin-modify-picture.html', config=app.config, active="modify-picture",pictures=pictures)
+    else:
+        return redirect('/admin')
 
 
 @admin_blueprint.route('/reset')
