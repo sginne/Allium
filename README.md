@@ -1,6 +1,6 @@
 ![AlliumShop](https://github.com/sginne/Allium/blob/master/app/static/github-logo.png?raw=true)
 
-### (works in clearnet or deepweb)
+*clearnet or deepweb - your keys are yours, no blockchain*
 
 ## Introduction
 
