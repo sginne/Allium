@@ -19,8 +19,3 @@ class Picture(db.Model):
 
     picture =  db.Column(db.Text)
     __tablename__ = 'pictures'
-#class PictureContainer(db.Model,app.Image):
-#    """Picture container model."""
-#    picture_id=db.Column(db.Integer,db.ForeignKey('pictures.id'),primary_key=True)
-#    picture=db.relationship("Picture")
-#    __tablename__ ='picture_containers'
