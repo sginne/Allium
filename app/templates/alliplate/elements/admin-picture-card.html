@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="columns">
+        {% for picture in pictures %}
+        <div class="card column col-3">
+            <div class="card-image">
+                <img class="img-responsive img-fit-contain" src="{{picture.picture}}">
+            </div>
+            <div class="card-body">
+                {{picture.name}}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
