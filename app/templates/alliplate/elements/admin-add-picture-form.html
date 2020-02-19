@@ -4,7 +4,7 @@
         <div class="card s-rounded">
             <br />
             <form id="new_picture_attachment" class="form-group" method="POST" onsubmit="prepareImg()">
-                <label class="form-label" for="master-key">Picture id to use, like <i>![-<b>pic_id</b>-]</i></label>
+                <label class="form-label" for="master-key">Picture id to use, like <i>![-<b>pic_id</b>-]</i><br><small>800x600 is best size, bigger picture will be resized to fit</small></label>
                 <input class="form-input" type="text" id="master-key" name="{{form.name.name}}">
                 <input id="inp_img" name="{{form.picture.name}}" type="hidden" value="">
 
@@ -70,10 +70,14 @@ function CLIPBOARD_CLASS(canvas_id, autoresize) {
 			}
 			else{
 				//clear canvas
-				ctx.clearRect(0, 0, canvas.width, canvas.height);
-			}
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
 			if (pastedImage.width>800 || pastedImage.height>600){
-                ctx.drawImage(pastedImage, 0, 0);
+                imageRatio=pastedImage.width/pastedImage.height;
+
+
+
+                ctx.drawImage(pastedImage, 0, 0,pastedImage.width,pastedImage.height,0,0,canvas.width,canvas.height);
             }
 			else{
             ctx.drawImage(pastedImage,canvas.width/2-pastedImage.width/2,canvas.width/2-pastedImage.width/2)
