@@ -1,24 +1,68 @@
     <div class="flex-centered">
         <canvas style="border:1px solid grey;" id="img_canvas" width="800" height="600"></canvas>
 
-        <div class="card s-rounded">
+        <div class="card s-rounded" >
             <br />
             <form id="new_picture_attachment" class="form-group" method="POST" onsubmit="prepareImg()">
                 <label class="form-label" for="master-key">Picture id to use, like <i>![-<b>pic_id</b>-]</i><br><small>800x600 is best size, bigger picture will be resized to fit</small></label>
                 <input class="form-input" type="text" id="master-key" name="{{form.name.name}}">
                 <input id="inp_img" name="{{form.picture.name}}" type="hidden" value="">
 
-                <input type="file" id="picture_attachment_doc" />
+                <input type="file" accept="image/*" name="imageFile" id="picture_attachment_doc" onchange="selectImage();" />
 
                 <input type="submit" class="btn btn-primary">
             </form>
         </div>
     </div>
-<script>
+    <script>
 
-function prepareImg() {
-   var canvas = document.getElementById('img_canvas');
-   document.getElementById('inp_img').value = canvas.toDataURL();
+        function selectImage() {
+            var selectedImage = new Image();
+            var fileSelector = document.getElementById('picture_attachment_doc');
+            var fileImage = fileSelector.files[0];
+            read = new FileReader();
+            read.onload = function (event) {
+                selectedImage.src = read.result;
+                document.write('<br><br><br>Your image in canvas: <img src="'+selectedImage.src+'"/>');
+            }
+            read.readAsDataURL(fileImage);
+            //document.write('<br><br><br>Your image in canvas: <img src="'+selectedImage.src+'"/>');
+            //return;
+
+
+            var canvas = document.getElementById('img_canvas');
+            var ctx = canvas.getContext("2d");
+
+            //var fileSelector = document.getElementById('picture_attachment_doc');
+            //read.readAsDataURL(fileImage);
+            //console.log(fileImage);
+            //#fixme remove EXIF here
+
+            //return;
+            //selectedImageURL=URL.createObjectURL(fileSelector.files[0]);
+            //document.write('<br><br><br>Your image in canvas: <img src="'+selectedImage.src+'"/>');
+
+
+            //selectedImage.onload=function () {
+            //selectedImage.setAttribute('src', selectedImage);
+            //    URL.revokeObjectURL(this.src);
+            //document.write('<br><br><br>Your image in canvas: <img src="'+selectedImage.src+'"/>');
+
+            //}
+
+   if (selectedImage.width>800 || selectedImage.height>600){
+                imageRatio=selectedImage.width/selectedImage.height;
+
+                //#fixme use imageRatio to resize big pasted picture
+
+                ctx.drawImage(selectedImage, 0, 0,selectedImage.width,selectedImage.height,0,0,canvas.width,canvas.height);
+            }
+			else{
+            //alert(ctx);
+            ctx.drawImage(selectedImage,canvas.width/2-selectedImage.width/2,canvas.width/2-selectedImage.width/2);
+            }
+
+
 }
 var CLIPBOARD = new CLIPBOARD_CLASS("img_canvas", false);
 
@@ -74,7 +118,7 @@ function CLIPBOARD_CLASS(canvas_id, autoresize) {
             }
 			if (pastedImage.width>800 || pastedImage.height>600){
                 imageRatio=pastedImage.width/pastedImage.height;
-
+                //#fixme use imageRatio to resize big pasted picture
 
 
                 ctx.drawImage(pastedImage, 0, 0,pastedImage.width,pastedImage.height,0,0,canvas.width,canvas.height);
