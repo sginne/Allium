@@ -1,6 +1,6 @@
 import hashlib
 from flask import current_app
-def password_hashing(password):
+def password_hashing_deprecate(password):
     """
     Returns sha512 from password and app.config['SECRET_KEY']
     :param password: password string

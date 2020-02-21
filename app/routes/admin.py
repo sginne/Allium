@@ -14,7 +14,7 @@ def admin():
     """
     route for admin dashboard
     """
-    from . import utils
+    from .. import utils
     if request.cookies.get('masterkey') == utils.password_hashing(app.config['MASTER_PASSWORD']):
         #authorized
         items = models.Item.query.all()

@@ -4,7 +4,7 @@ from wtforms import TextAreaField,StringField,SubmitField,PasswordField,TextFiel
 from flask import current_app as app
 from flask import current_app
 from app import db,models
-from . import utils
+from .. import utils
 admin_item_blueprint = Blueprint('admin_item', __name__)
 
 
