@@ -19,11 +19,18 @@ def markup(string_to_parse):
     """
     bold_re=re.compile(r".*?(\*\*(.*?)\*\*).*?") # **bold**
     italic_re=re.compile(r".*?(''(.*?)'').*?")  # ''italics**
-    image_re=re.compile(r".*?(![-(.*?)-]).*?")  # ![-image_id-]
+    image_re=re.compile(r".*?(!\[\-(.*?)\-\]).*?")  # ![-image_id-]
+
+    found_matches=re.findall(image_re,string_to_parse)
+    for match in found_matches:
+        print(match)
+        string_to_parse=string_to_parse.replace(match[0],"<img src=/picture/\""+match[1]+"\">")
+
 
     found_matches=re.findall(italic_re,string_to_parse)
     for match in found_matches:
         string_to_parse=string_to_parse.replace(match[0],"<i>"+match[1]+"</i>")
+
     found_matches=re.findall(bold_re,string_to_parse)
     for match in found_matches:
         string_to_parse=string_to_parse.replace(match[0],"<b>"+match[1]+"</b>")
