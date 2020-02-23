@@ -23,9 +23,9 @@ def markup(string_to_parse):
 
     found_matches=re.findall(image_re,string_to_parse)
     for match in found_matches:
-        string_to_parse=string_to_parse.replace(match[0],"<img align=\"bottom\"width=\"100px\" src=/picture/\""+match[1]+"\">")
+        string_to_parse=string_to_parse.replace(match[0],"<div class=\"float-left popover popover-right\"><img class=\"card mx-2\" align=\"left\" width=\"100px\" src=/picture/\""+match[1]+"\"><div class=\"popover-container\"><img class=\"card mx-2\" align=\"left\" width=\"400px;\" src=/picture/\""+match[1]+"\"></div></div>")
 
-
+    #.thumbnail: hover\{position: relative;top: -40 px;left: -100px;width:800px;height: auto;display: block;z - index: 999;\}
     found_matches=re.findall(italic_re,string_to_parse)
     for match in found_matches:
         string_to_parse=string_to_parse.replace(match[0],"<i>"+match[1]+"</i>")
