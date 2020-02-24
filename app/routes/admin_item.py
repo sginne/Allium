@@ -32,3 +32,15 @@ def add_item():
             return render_template(app.config['TEMPLATE_NAME'] + '/admin-add.html', config=app.config,active="add-good",form=add_form)
     else:
         return redirect('/admin')
+
+@admin_item_blueprint.route('/admin_modify',methods=['POST','GET'])
+def modify_item():
+    """
+    route for item modification
+    :return:
+    """
+    if request.cookies.get('masterkey') == utils.password_hashing(app.config['MASTER_PASSWORD']):
+        # authorized
+        return render_template(app.config['TEMPLATE_NAME'] + '/admin-modify.html', config=app.config, active="modify-good")
+    else:
+        return redirect('/admin')
