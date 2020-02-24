@@ -39,4 +39,6 @@ with app.app_context():
 
 app.register_blueprint(routes.admin.admin_blueprint) #registering blueprints for admin
 app.register_blueprint(routes.admin_item.admin_item_blueprint) #registering blueprints for admin_item
+app.register_blueprint(routes.admin_pictures.admin_picture_blueprint) #registering blueprints for admin_item
+
 app.register_blueprint(routes.picture.picture_blueprint) #registering blueprints for admin_item
