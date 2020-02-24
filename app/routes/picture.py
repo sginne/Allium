@@ -16,7 +16,8 @@ picture_blueprint = Blueprint('picture', __name__) #registering picture blueprin
 def picture(pic_id):
     template_dir = os.path.dirname(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
     template_dir=template_dir+"/images/"
-    print(template_dir)
+    #print(template_dir)
+
     with open(template_dir+"0.jpg", 'rb') as bites:
         return send_file(
                      io.BytesIO(bites.read()),
