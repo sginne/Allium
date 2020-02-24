@@ -39,8 +39,14 @@ def modify_item():
     route for item modification
     :return:
     """
+
     if request.cookies.get('masterkey') == utils.password_hashing(app.config['MASTER_PASSWORD']):
         # authorized
+        items = models.Item.query.all()
+        from .. import utils
+        items=utils.markup_list_descriptions(items)
+        return render_template(app.config['TEMPLATE_NAME']+'/admin.html',config=app.config,active="admin-console",items=items)
+
         return render_template(app.config['TEMPLATE_NAME'] + '/admin-modify.html', config=app.config, active="modify-good")
     else:
         return redirect('/admin')
