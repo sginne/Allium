@@ -1,7 +1,16 @@
-from app import db
-import app
+#from app import db
+#import app
+from .. import db
+from . import populate
 
-all_tables=["items","pictures","picture_containers"]
+all_tables=["items","pictures","picture_containers","fiat_currency"]
+class Fiat_currency(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name=db.Column(db.String(10))
+    sign=db.Column(db.String(2))
+    __tablename__ = "fiat_currency"
+
+
 #goods
 class Item(db.Model):
     """
@@ -9,6 +18,7 @@ class Item(db.Model):
     """
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     name = db.Column(db.String(64),nullable=False)
+    price_fiat = db.Column(db.Numeric)
     description = db.Column(db.String(4096))
 
     __tablename__="items"
