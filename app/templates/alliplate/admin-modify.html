@@ -20,7 +20,11 @@
             {% for item in items %}
                 <tr>
                     <td width="25%;">
-                        {{item.name}}
+                        <a href="/admin-modify.html/{{item.id}}">
+                        <h3>{{item.name}}</h3>
+                        <hr>{{"%.2f"|format(item.price_fiat)}}€ #fixme currency_fiat
+                        <br><br><br>
+                        </a>
                     </td>
                     <td>
                         <div class="d-inline">{{item.description|safe}}</div>
