@@ -25,7 +25,7 @@ def picture(pic_id):
                 import re
                 b64_string=re.sub('^data:image/.+;base64,', '',picture.picture)
                 image_binary=base64.b64decode(b64_string)
-                print(image_binary)
+                #print(image_binary)
                 from PIL import Image
                 image=Image.open(io.BytesIO(image_binary))
 
