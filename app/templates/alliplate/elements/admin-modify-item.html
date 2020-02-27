@@ -1,0 +1,33 @@
+   {% if items|length>0 %}
+
+        <table style="margin:3%;width: 94%;" class="table table-striped">
+            <thead>
+                <tr>
+                    <th colspan="100%">Items listed:</th>
+                </tr>
+            </thead>
+            {% for item in items %}
+                <tr>
+                    <td width="25%;">
+                        <a href="/admin-modify.html/{{item.id}}">
+                        <h3>{{item.name}}</h3>
+                        <hr>{{"%.2f"|format(item.price_fiat)}}€ #fixme currency_fiat
+                        <br><br><br>
+                        </a>
+                    </td>
+                    <td>
+                        <div class="d-inline">{{item.description|safe}}</div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+    {% else %}
+        <table style="margin:3%;width: 94%;" class="table table-striped">
+            <thead>
+                <tr>
+                    <th colspan="100%">No items</th>
+                </tr>
+            </thead>
+        </table>
+    {% endif %}
