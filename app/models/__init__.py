@@ -25,14 +25,20 @@ class Item(db.Model):
     """
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     name = db.Column(db.String(64),nullable=False)
-    price_fiat_id=db.Column(db.Integer,db.ForeignKey('fiat_currency.id'))
-    price_fiat_relation=db.relationship("Fiat_currency")
-    price_crypto_id=db.Column(db.Integer,db.ForeignKey('crypto_currency.id'))
-    price_crypto_relation=db.relationship("Crypto_currency")
-    fiat_crypto_main_flag=db.Column(db.String(1))
     description = db.Column(db.String(4096))
 
+    price_fiat=db.Column(db.Numeric,nullable=False,default=0)
+    price_fiat_id=db.Column(db.Integer,db.ForeignKey('fiat_currency.id'))
+    price_fiat_relation=db.relationship("Fiat_currency")
+
+    price_crypto=db.Column(db.Numeric,nullable=False,default=0)
+    price_crypto_id=db.Column(db.Integer,db.ForeignKey('crypto_currency.id'))
+    price_crypto_relation=db.relationship("Crypto_currency")
+
+    fiat_crypto_main_flag=db.Column(db.String(1))
+
     __tablename__="items"
+
 class Picture(db.Model):
     """Picture model."""
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
