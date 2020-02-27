@@ -9,14 +9,19 @@
             {% for item in items %}
                 <tr>
                     <td width="25%;">
-                        <a href="/admin-modify.html/{{item.id}}">
+                        <a href="/admin-add.html/{{item.id}}">
                         <h3>{{item.name}}</h3>
-                        <hr>{{"%.2f"|format(item.price_fiat)}}€ #fixme currency_fiat
+                        <hr>{{"%.2f"|format(item.price_fiat)}}{{item.price_fiat_rel}}€
                         <br><br><br>
                         </a>
                     </td>
                     <td>
-                        <div class="d-inline">{{item.description|safe}}</div>
+                        <div class="card d-inline">
+                            <div class="card-header">
+                                {{item.description|safe}}
+                            </div>
+                            <div class="card-footer">menu here</div>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}
