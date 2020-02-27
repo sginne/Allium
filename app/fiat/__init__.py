@@ -1,0 +1,1 @@
+all_fiat=['Euro']
