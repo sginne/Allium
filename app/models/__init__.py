@@ -19,6 +19,8 @@ class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     name = db.Column(db.String(64),nullable=False)
     price_fiat = db.Column(db.Numeric)
+    price_crypto=db.Column(db.Numeric)
+    fiat_crypto_main_flag=db.Column(db.String(1))
     description = db.Column(db.String(4096))
 
     __tablename__="items"
