@@ -22,6 +22,11 @@ with open("allium.cfg") as config_file:
 app = Flask(__name__, static_folder='./templates/'+template_name+'/static/') #here flask is born
 
 app.config.from_pyfile('../allium.cfg') #parse config into flask
+import random,string
+secret_key=''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(52))
+app.secret_key=secret_key
+app.config['SECRET_KEY']=secret_key
+app.config['WTF_CSRF_SECRET_KEY']=secret_key
 
 db.init_app(app) #db for app
 app.app_context().push()
