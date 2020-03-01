@@ -9,19 +9,19 @@
             {% for item in items %}
                 <tr>
                     <td width="25%;">
-                        <a href="/admin-add.html/{{item.id}}">
+
                         <h3>{{item.name}}</h3>
                         <hr>{{"%.2f"|format(item.price_fiat)}} {{item.price_fiat_relation.name}}<br>
                             {{"%.5f"|format(item.price_crypto)}} {{item.price_crypto_relation.name}}
                         <br><br><br>
-                        </a>
+                        <a href="/admin-modify.html/modify/{{item.id}}"><button class="btn">Modify {{item.name|truncate (10,True)}}</button></a>
+                        <a href="/admin-modify.html/delete/{{item.id}}"><button class="btn btn-error">Delete</button></a>
                     </td>
                     <td>
                         <div class="card d-inline">
                             <div class="card-header">
                                 {{item.description|safe}}
                             </div>
-                            <div class="card-footer">menu here</div>
                         </div>
                     </td>
                 </tr>
