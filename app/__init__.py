@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import inspect,Integer,Unicode,ForeignKey,Numeric
 from sqlalchemy.orm import relationship
 from flask_session import Session
-#from sqlalchemy_imageattach.entity import Image,image_attachment
 from sqlalchemy_utils import create_database,database_exists
 from sqlalchemy.ext.declarative import declarative_base
 
