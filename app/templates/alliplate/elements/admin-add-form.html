@@ -2,9 +2,9 @@
         <div style="width: 90%;" class="card s-rounded">
             <form class="form-group" method="POST">
                 <label class="form-label" for="master-key">{{form.name.label}}</label>
-                <input class="form-input" type="text" id="master-key" name="{{form.name.name}}">
+                <input class="form-input" type="text" id="master-key" name="{{form.name.name}}" value="{{items[0].name}}">
                 <label class="form-label" for="master-key">{{form.description.label}}</label>
-                <textarea name="{{form.description.name}}" class="form-input"></textarea>
+                <textarea name="{{form.description.name}}" class="form-input">{{items[0].description}}</textarea>
                 <input type="submit" class="btn btn-primary">
             </form>
         </div>
