@@ -26,7 +26,6 @@ def add_item():
         if request.method=='POST':
             #adding item?
             new_item=models.Item(name=add_form.name.data,description=add_form.description.data,price_crypto=add_form.price_crypto.data)
-
             db.session.add(new_item)
             db.session.commit()
             return redirect('/admin')
