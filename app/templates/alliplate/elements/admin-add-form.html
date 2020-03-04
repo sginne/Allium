@@ -1,10 +1,14 @@
     <div class="flex-centered">
         <div style="width: 90%;" class="card s-rounded">
             <form class="form-group" method="POST">
-                <label class="form-label" for="master-key">{{form.name.label}}</label>
-                <input class="form-input" type="text" id="master-key" name="{{form.name.name}}" value="{{items[0].name}}">
-                <label class="form-label" for="master-key">{{form.description.label}}</label>
-                <textarea name="{{form.description.name}}" class="form-input">{{items[0].description}}</textarea>
+                <label>{{form.name.label}}</label>
+                <input type="text" name="{{form.name.name}}" value="{{items[0].name}}">
+                <hr>
+                <label>{{form.price_crypto.label}}</label>
+                <input type="text" name="{{form.price_crypto.name}}" value="{{items[0].price_crypto}}">
+                <hr>
+                <label>{{form.description.label}}</label>
+                <textarea style="width: 80%;" rows="10" name="{{form.description.name}}" >{{items[0].description}}</textarea>
                 <input type="submit" class="btn btn-primary">
             </form>
         </div>
