@@ -7,7 +7,10 @@ from app import db,models
 from .. import utils
 
 admin_item_blueprint = Blueprint('admin_item', __name__)
-
+class ItemForm(FlaskForm):
+    name = StringField('Item name:')
+    description = TextAreaField('Description:')
+    submit = SubmitField('Add')
 
 
 @admin_item_blueprint.route('/admin_add',methods=['POST','GET'])
@@ -17,11 +20,7 @@ def add_item():
     """
     if request.cookies.get('masterkey') == utils.password_hashing(app.config['MASTER_PASSWORD']):
         # authorized
-        class AddForm(FlaskForm):
-            name=StringField('Item name:')
-            description=TextAreaField('Description:')
-            submit = SubmitField('Add')
-        add_form=AddForm()
+        add_form=ItemForm()
         if request.method=='POST':
             #adding item?
             new_item=models.Item(name=add_form.name.data,description=add_form.description.data)
@@ -30,7 +29,7 @@ def add_item():
             db.session.commit()
             return redirect('/admin')
         else:
-            return render_template(app.config['TEMPLATE_NAME'] + '/admin-add.html', config=app.config,active="add-good",form=add_form)
+            return render_template(app.config['TEMPLATE_NAME'] + '/admin-add.html', config=app.config,active="add-good",form=add_form,items=[''])#fixme enchance default perhaps
     else:
         return redirect('/admin')
 
@@ -41,14 +40,20 @@ def modify_item(action='default',post_id=None):
     route for item modification
     :return:
     """
-    print(action,post_id)
 
     if request.cookies.get('masterkey') == utils.password_hashing(app.config['MASTER_PASSWORD']):
         # authorized
 
         if action=='modify':
             #post_id to modify
-            return "modify"
+            item=db.session.query(models.Item).join(models.Fiat_currency).join(models.Crypto_currency).filter(models.Item.price_crypto_id==models.Crypto_currency.id).filter(models.Item.price_fiat_id==models.Fiat_currency.id).filter(models.Item.id==post_id).all()
+            modify_form=ItemForm()
+            if request.method=='POST':
+                item[0].name=modify_form.name.data
+                item[0].description=modify_form.description.data
+                db.session.commit()
+                return redirect('/admin_modify')
+            return render_template(app.config['TEMPLATE_NAME']+'/admin-modify-item.html',config=app.config,active="modify-good",items=item,form=modify_form)
         elif action=='delete':
             #post_id to delete
             return "delete"
