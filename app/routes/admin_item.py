@@ -1,6 +1,6 @@
 from flask import Response,Blueprint, render_template, session, request, make_response,abort,redirect
 from flask_wtf import FlaskForm
-from wtforms import TextAreaField,StringField,SubmitField,PasswordField,TextField,HiddenField
+from wtforms import FloatField,TextAreaField,StringField,SubmitField,PasswordField,TextField,HiddenField
 from flask import current_app as app
 from flask import current_app
 from app import db,models
@@ -10,7 +10,9 @@ admin_item_blueprint = Blueprint('admin_item', __name__)
 class ItemForm(FlaskForm):
     name = StringField('Item name:')
     description = TextAreaField('Description:')
-    submit = SubmitField('Add')
+    price_crypto=FloatField('Crypto price')
+    price_fiat=FloatField('FIAT price')
+    submit = SubmitField('')
 
 
 @admin_item_blueprint.route('/admin_add',methods=['POST','GET'])
@@ -23,7 +25,7 @@ def add_item():
         add_form=ItemForm()
         if request.method=='POST':
             #adding item?
-            new_item=models.Item(name=add_form.name.data,description=add_form.description.data)
+            new_item=models.Item(name=add_form.name.data,description=add_form.description.data,price_crypto=add_form.price_crypto.data)
 
             db.session.add(new_item)
             db.session.commit()
@@ -51,6 +53,7 @@ def modify_item(action='default',post_id=None):
             if request.method=='POST':
                 item[0].name=modify_form.name.data
                 item[0].description=modify_form.description.data
+                item[0].price_crypto=modify_form.price_crypto.data
                 db.session.commit()
                 return redirect('/admin_modify')
             return render_template(app.config['TEMPLATE_NAME']+'/admin-modify-item.html',config=app.config,active="modify-good",items=item,form=modify_form)
