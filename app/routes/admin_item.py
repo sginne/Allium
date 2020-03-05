@@ -58,8 +58,9 @@ def modify_item(action='default',post_id=None):
                 return redirect('/admin_modify')
             return render_template(app.config['TEMPLATE_NAME']+'/admin-modify-item.html',config=app.config,active="modify-good",items=item,form=modify_form)
         elif action=='delete':
-            #post_id to delete
-            return "delete"
+            models.Item.query.filter_by(id=post_id).delete()
+            db.session.commit()
+            return redirect('/admin_modify')
         else:
             items = db.session.query(models.Item).join(models.Fiat_currency).join(models.Crypto_currency).filter(models.Item.price_crypto_id==models.Crypto_currency.id).filter(models.Item.price_fiat_id==models.Fiat_currency.id).all()
             items=utils.markup_list_descriptions(items)
