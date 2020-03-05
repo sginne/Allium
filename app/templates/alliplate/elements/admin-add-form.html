@@ -6,6 +6,9 @@
                 <hr>
                 <label>{{form.price_crypto.label}}</label>
                 <input type="text" name="{{form.price_crypto.name}}" value="{{items[0].price_crypto}}">
+                <label>{{form.price_fiat.label}}</label>
+                <input type="text" name="{{form.price_fiat.name}}" value="{{items[0].price_fiat}}">
+
                 <hr>
                 <label>{{form.description.label}}</label>
                 <textarea style="width: 80%;" rows="10" name="{{form.description.name}}" >{{items[0].description}}</textarea>
