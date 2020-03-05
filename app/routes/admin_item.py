@@ -25,10 +25,10 @@ def add_item():
         add_form=ItemForm()
         if request.method=='POST':
             #adding item?
-            new_item=models.Item(name=add_form.name.data,description=add_form.description.data,price_crypto=add_form.price_crypto.data)
+            new_item=models.Item(name=add_form.name.data,description=add_form.description.data,price_crypto=add_form.price_crypto.data,price_fiat=add_form.price_fiat.data,price_crypto_id=1,price_fiat_id=1)#fixme ..=1 is lame way to reference crypto and fiat id
             db.session.add(new_item)
             db.session.commit()
-            return redirect('/admin')
+            return redirect('/admin_modify')
         else:
             return render_template(app.config['TEMPLATE_NAME'] + '/admin-add.html', config=app.config,active="add-good",form=add_form,items=[''])#fixme enchance default perhaps
     else:
@@ -53,6 +53,7 @@ def modify_item(action='default',post_id=None):
                 item[0].name=modify_form.name.data
                 item[0].description=modify_form.description.data
                 item[0].price_crypto=modify_form.price_crypto.data
+                item[0].price_fiat=modify_form.price_fiat.data
                 db.session.commit()
                 return redirect('/admin_modify')
             return render_template(app.config['TEMPLATE_NAME']+'/admin-modify-item.html',config=app.config,active="modify-good",items=item,form=modify_form)
