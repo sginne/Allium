@@ -35,7 +35,7 @@ class Item(db.Model):
     price_crypto_id=db.Column(db.Integer,db.ForeignKey('crypto_currency.id'))
     price_crypto_relation=db.relationship("Crypto_currency")
 
-    fiat_crypto_main_flag=db.Column(db.String(1))
+    fiat_crypto_main_flag=db.Column(db.String(1),default="fiat")
 
     __tablename__="items"
 
