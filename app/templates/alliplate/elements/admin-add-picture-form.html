@@ -78,6 +78,16 @@
                         var blob = items[i].getAsFile();
                         var URLObj = window.URL || window.webkitURL;
                         var source = URLObj.createObjectURL(blob);
+                        var reader = new FileReader();
+                        reader.readAsDataURL(blob);
+                        reader.onloadend = function() {
+                            var base64data = reader.result;
+                            console.log(base64data);
+                            source=base64data;
+                            //parent.paste_createImage(base64data)фи
+                        }
+
+                        //console.table(fetch(source));
                         this.paste_createImage(source);
                         is_image = true;
                     }
@@ -113,6 +123,8 @@
                 }
             };
             pastedImage.src = source;
+            //console.table(source);
+
         };
     }
 </script>
