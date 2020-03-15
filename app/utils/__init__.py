@@ -2,6 +2,7 @@
 import re
 import hashlib
 from flask import current_app
+from . import http_module
 
 def password_hashing(password):
     """

@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import TextAreaField,StringField,SubmitField,PasswordField,TextField,HiddenField
 #from flask import current_app as app
 from flask import current_app
-from .. import currency
+#from .. import currency
 import app
 
 
@@ -13,7 +13,6 @@ base_blueprint = Blueprint('base', __name__) #registering admin blueprints
 
 @base_blueprint.route('/',methods=['POST','GET'])
 def base():
-    with current_app.app_context():
-        object=app
-        print(object.currency_module)
-    return 'lol'
+
+    #    print(app.currency_module.exchange_rate)
+    return str(app.currency_module.exchange_rate)
