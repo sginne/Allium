@@ -15,4 +15,5 @@ base_blueprint = Blueprint('base', __name__) #registering admin blueprints
 def base():
 
     #    print(app.currency_module.exchange_rate)
-    return str(app.currency_module.exchange_rate)
+    rate=app.currency_module.exchange_rate
+    return render_template(current_app.config['TEMPLATE_NAME']+'/base.html',rate=rate)
