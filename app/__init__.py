@@ -23,7 +23,8 @@ app = Flask(__name__, static_folder='./templates/'+template_name+'/static/') #he
 
 app.config.from_pyfile('../allium.cfg') #parse config into flask
 
-currency_module=currency.fiat_currency_module(app.config['CURRENCY'])
+currency_module=currency.FiatCurrency(app.config['CURRENCY']).module
+#print(currency_module.exchange_rate)
 
 #print (app.config['CURRENCY'])
 #print(currency_module)
@@ -48,6 +49,7 @@ with app.app_context():
             db.create_all()
             models.populate.populate_tables(db)
 
+app.register_blueprint(routes.base.base_blueprint)
 
 app.register_blueprint(routes.admin.admin_blueprint) #registering blueprints for admin
 app.register_blueprint(routes.admin_item.admin_item_blueprint) #registering blueprints for admin_item
