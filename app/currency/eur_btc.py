@@ -10,7 +10,4 @@ class FiatCrypto:
     def read_exchange_rate(self):
         data=self.http.json_loads(self.http.url_request(self.exchange_url))
         self.exchange_rate = data['EUR']['last']
-        #with urllib.request.urlopen(self.exchange_url) as url:
-        #    data = json.loads(url.read().decode())
-        #    self.exchange_rate=data['EUR']['last']
 
