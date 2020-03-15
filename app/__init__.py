@@ -24,7 +24,8 @@ app = Flask(__name__, static_folder='./templates/'+template_name+'/static/') #he
 app.config.from_pyfile('../allium.cfg') #parse config into flask
 
 currency_module=currency.FiatCurrency(app.config['CURRENCY']).module
-#print(currency_module.exchange_rate)
+
+#exchange_rate=currency_module.exchange_rate
 
 #print (app.config['CURRENCY'])
 #print(currency_module)
