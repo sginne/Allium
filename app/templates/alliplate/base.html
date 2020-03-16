@@ -3,7 +3,10 @@
 <head>
 {% include config['TEMPLATE_NAME'] ~ "/elements/head.html" %}
 </head>
-
+<body>
+        <header class="bg-gray">
+        {% include config['TEMPLATE_NAME'] ~ "/elements/header.html" %}
+        </header>
     rate=<span>{{rate}}</span>
-    </body>
+</body>
 </html>
