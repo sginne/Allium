@@ -16,4 +16,4 @@ def base():
 
     #    print(app.currency_module.exchange_rate)
     rate=app.currency_module.exchange_rate
-    return render_template(current_app.config['TEMPLATE_NAME']+'/base.html',rate=rate)
+    return render_template(current_app.config['TEMPLATE_NAME']+'/base.html',rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name)
