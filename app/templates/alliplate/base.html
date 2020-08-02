@@ -7,6 +7,7 @@
         <header class="bg-gray">
         {% include config['TEMPLATE_NAME'] ~ "/elements/header.html" %}
         </header>
-    rate=<span>{{rate}} -- {{crypto_name}}/{{fiat_name}}</span>
+
+    {% include config['TEMPLATE_NAME'] ~ "/elements/base-rate.html" %}
 </body>
 </html>
