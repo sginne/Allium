@@ -5,6 +5,8 @@ class FiatCrypto:
     http=utils.http_module.work_horse()
     exchange_url='https://blockchain.info/ticker'
     exchange_rate=0
+    fiat_name="€"
+    crypto_name="₿"
     def __init__(self):
         self.read_exchange_rate()
     def read_exchange_rate(self):
