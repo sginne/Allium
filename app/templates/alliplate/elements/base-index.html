@@ -1,0 +1,25 @@
+{% if items|length>0 %}
+        <table style="margin:3%;width: 94%;" class="table table-striped">
+            <thead>
+                <tr>
+                    <th colspan="100%">Offers:</th>
+                </tr>
+            </thead>
+{% for item in items %}
+ <tr>
+                    <td width="25%;">
+
+                        <h3>{{item.name}}</h3>
+                    </td>
+ </tr>
+
+{% endfor %}
+{% else %}
+<table style="margin:3%;width: 94%;" class="table table-striped">
+    <thead>
+    <tr>
+        <th colspan="100%">No items</th>
+    </tr>
+    </thead>
+</table>
+{% endif %}
