@@ -21,4 +21,5 @@ def base():
     models.Item.price_fiat_id == models.Fiat_currency.id).filter().all()
     print (item)
     rate=app.currency_module.exchange_rate
-    return render_template(current_app.config['TEMPLATE_NAME']+'/base.html',rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name,items=item)
+    pictures = models.Picture.query.all()
+    return render_template(current_app.config['TEMPLATE_NAME']+'/base.html',rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name,items=item,pictures=pictures)
