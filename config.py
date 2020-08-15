@@ -34,12 +34,14 @@ div = urwid.Divider()
 allium_title_ask = urwid.Edit(('palette', u"ALLIUM_TITLE: Short and precise, like MyShop\n"),edit_text=conf['ALLIUM_TITLE'])
 allium_name_ask = urwid.Edit(('palette', u"ALLIUM_NAME: Addition to title, like \"Next day delivery!\"\n"),edit_text=conf['ALLIUM_NAME'])
 allium_master_password_ask = urwid.Edit(('palette', u"MASTER_PASSWORD: VERY, EXTREMELY LONG STRING - No-one should be able to guess it. "),edit_text=conf['MASTER_PASSWORD'])
+allium_ssl_ask = urwid.Edit(('palette', u"SSL_ENABLED: Darknet mode - disable SSL, Enabled for clearnet(/app/keys/*.crt & .key).  "),edit_text=conf['SSL_ENABLED'])
+
 
 exit_button = urwid.Button(u'Exit')
 cancel_button = urwid.Button(u'Cancel')
 revert_button = urwid.Button(u'Revert')
 
-pile = urwid.Pile([allium_title_ask,allium_name_ask,allium_master_password_ask, div, exit_button,cancel_button])
+pile = urwid.Pile([allium_title_ask,allium_name_ask,allium_ssl_ask,allium_master_password_ask, div, exit_button,cancel_button])
 top = urwid.Filler(pile, valign='top')
 
 
@@ -48,6 +50,7 @@ def on_exit_clicked(button):
     change_config('ALLIUM_TITLE',conf['ALLIUM_TITLE'])
     change_config('ALLIUM_NAME',conf['ALLIUM_NAME'])
     change_config('MASTER_PASSWORD',conf['MASTER_PASSWORD'])
+    change_config('SSL_ENABLED',conf['SSL_ENABLED'])
     raise urwid.ExitMainLoop()
 def on_cancel_clicked(button):
     raise urwid.ExitMainLoop()
@@ -63,8 +66,12 @@ def on_name_change(edit,new_text):
     conf['ALLIUM_NAME']=new_text
 def on_master_password_change(edit,new_text):
     conf['MASTER_PASSWORD']=new_text
+def on_ssl_enable_change(edit,new_text):
+    conf['SSL_ENABLED']=new_text
 urwid.connect_signal(allium_title_ask, 'change', on_title_change)
 urwid.connect_signal(allium_name_ask,'change',on_name_change)
 urwid.connect_signal(allium_master_password_ask,'change',on_master_password_change)
+urwid.connect_signal(allium_ssl_ask,'change',on_ssl_enable_change)
+
 
 urwid.MainLoop(top, palette).run()
