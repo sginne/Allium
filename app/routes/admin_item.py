@@ -12,6 +12,7 @@ class ItemForm(FlaskForm):
     description = TextAreaField('Description:')
     price_crypto=FloatField('Crypto price')
     price_fiat=FloatField('FIAT price')
+    pic_name=StringField('Head picture:')
     currency=RadioField('FIAT/Crypto main flag',choices=[(1, 'fiat'), (2, 'crypto')],default=1)
     submit = SubmitField('')
 
@@ -30,7 +31,7 @@ def add_item():
                 fiat_crypto_main_flag="crypto"
             else:
                 fiat_crypto_main_flag="fiat"
-            new_item=models.Item(name=add_form.name.data,description=add_form.description.data,price_crypto=add_form.price_crypto.data,price_fiat=add_form.price_fiat.data,price_crypto_id=1,price_fiat_id=1,fiat_crypto_main_flag=fiat_crypto_main_flag)#fixme ..=1 is lame way to reference crypto and fiat id
+            new_item=models.Item(name=add_form.name.data,description=add_form.description.data,pic_name=add_form.pic_name.data,price_crypto=add_form.price_crypto.data,price_fiat=add_form.price_fiat.data,price_crypto_id=1,price_fiat_id=1,fiat_crypto_main_flag=fiat_crypto_main_flag)#fixme ..=1 is lame way to reference crypto and fiat id
             db.session.add(new_item)
             db.session.commit()
             return redirect('/admin_modify')
