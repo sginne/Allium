@@ -44,6 +44,8 @@ if app.config['SSL_ENABLED']=='True':
     context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
     context.load_cert_chain('ssl/web.crt', 'ssl/web.key')
 
+
+
 #def reset_database():
 #    db.drop_all()
 #    db.create_all()
