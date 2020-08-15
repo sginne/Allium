@@ -6,6 +6,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy_utils import create_database,database_exists
 from sqlalchemy.ext.declarative import declarative_base
 
+
 db=SQLAlchemy() #db by SQLAlchemy
 
 from . import models #database models
@@ -38,6 +39,10 @@ app.config['WTF_CSRF_SECRET_KEY']=secret_key
 
 db.init_app(app) #db for app
 #app.app_context().push()
+if app.config['SSL_ENABLED']=='True':
+    import ssl
+    context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+    context.load_cert_chain('ssl/web.crt', 'ssl/web.key')
 
 #def reset_database():
 #    db.drop_all()
