@@ -5,7 +5,7 @@ if __name__=="__main__":
             if line.find('SSL_ENABLED') != -1:
                 ssl_enabled = line.split('"')[1::2][0]
 
-    print (template_name)
+    print (ssl_enabled)
     app.run(port=8080)
 else:
     exit
