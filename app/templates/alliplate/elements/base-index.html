@@ -24,7 +24,7 @@
                         {% endif %}
 
                         {% if item.fiat_crypto_main_flag=='crypto'%}
-                        {{(item.price_crypto|string).rstrip('.0')}}{{crypto_name}}
+                        {{(item.price_crypto||round(8)|string).rstrip('.0')}}{{crypto_name}}
                         {% endif %}
                         </h6>
                     </td>
