@@ -18,7 +18,7 @@
                     <td width="85%:" style="vertical-align: top;">
                         <h3>{{item.name}}</h3>
                         <h6>
-                        Price: 
+                        Price:
                         {% if item.fiat_crypto_main_flag=='fiat'%}
                         {{(item.price_fiat|string).rstrip('.0')}}{{fiat_name}}
                         {% endif %}
