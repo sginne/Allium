@@ -26,7 +26,9 @@ class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     name = db.Column(db.String(64),nullable=False)
     description = db.Column(db.String(4096))
+    short_description=db.Column(db.String(4096))
     pic_name=db.Column(db.String(64))
+    amount=db.Column(db.Integer,default=0)
 
     price_fiat=db.Column(db.Numeric,nullable=False,default=0)
     price_fiat_id=db.Column(db.Integer,db.ForeignKey('fiat_currency.id'))
