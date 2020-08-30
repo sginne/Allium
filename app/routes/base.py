@@ -15,11 +15,9 @@ base_blueprint = Blueprint('base', __name__) #registering admin blueprints
 
 def base():
 
-    #    print(app.currency_module.exchange_rate)
     item = db.session.query(models.Item).join(models.Fiat_currency).join(models.Crypto_currency).filter(
     models.Item.price_crypto_id == models.Crypto_currency.id).filter(
     models.Item.price_fiat_id == models.Fiat_currency.id).filter().all()
-    print (item)
     rate=app.currency_module.exchange_rate
     pictures = models.Picture.query.all()
     return render_template(current_app.config['TEMPLATE_NAME']+'/base.html',rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name,items=item,pictures=pictures)
