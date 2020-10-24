@@ -27,6 +27,7 @@
                         {{(item.price_crypto|round(8)|string).rstrip('.0')}}{{crypto_name}}
                         {% endif %}
                         </h6>
+                        {{item.description|safe}}
                     </td>
  </tr>
 {% endfor %}
