@@ -62,6 +62,9 @@ def modify_item(action='default',post_id=None):
                 item[0].price_crypto=modify_form.price_crypto.data
                 item[0].price_fiat=modify_form.price_fiat.data
                 item[0].amount=modify_form.amount.data
+                item[0].pic_name=modify_form.pic_name.data
+                print(modify_form.pic_name.data)
+                print(modify_form.description.data)
                 if modify_form.currency.data=='1':
                     item[0].fiat_crypto_main_flag='fiat'
                 else:
