@@ -24,6 +24,12 @@ So, **Alliu₷hop** was born, very lightweight *python3/flask* shop, made with d
 * Opensource, no binaries of any kind - you control and own your own shop, and  free to audit and change code as you wish
 * Panic button with ability to reconstruct wif private keys
 
+## Installattion
+
+* python -m venv venv
+* database in App/db/data.sql, in App/_init is call #fixme
+* SSL_Enabled False, or install cryptolibraries #fixme
+
 ## Donations
 Project is going to be funded completely by donations, but I don't see why anyonehas to support this project now.
 
