@@ -20,11 +20,11 @@
                         <h6>
                         Price:
                         {% if item.fiat_crypto_main_flag=='fiat'%}
-                        {{(item.price_fiat|string).rstrip('.0')}}{{fiat_name}}
+                        {{(item.price_fiat|round(2)|string).rstrip('0').rstrip('.')}}{{fiat_name}}
                         {% endif %}
 
                         {% if item.fiat_crypto_main_flag=='crypto'%}
-                        {{(item.price_crypto|round(8)|string).rstrip('.0')}}{{crypto_name}}
+                        {{(item.price_crypto|round(4)|string).rstrip('0').rstrip('.')}}{{crypto_name}}
                         {% endif %}
                         </h6>
                         {{item.description|safe}}
