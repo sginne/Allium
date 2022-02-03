@@ -2,6 +2,11 @@
 
 *clearnet or deepweb - your keys are yours, no blockchain downloading. full control for no price*
 
+## Update
+
+Small update from 03.02.2022 - due to improved circumstances, I am able to resume working on Allium. 
+This is test commit from renewed desktop.
+
 ## Introduction
 
 **Alliu₷hop** is small, lightweight shopping system supporting ONLY cryptocurrencies.
