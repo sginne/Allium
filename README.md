@@ -13,12 +13,14 @@ This is test commit from renewed desktop, and will fade away from further README
 
 ## About
 
-There were a lot of deepweb markets, starting with *Silkroad*.
+There were a lot of deepweb markets.
 Markets are centralized, which makes them easy to track and close.
 
 I, however, think that free trade should co-exist with regulated trade, and to make free, unregulated trade possible, I've decided to make opensource shop.
 
 Reason? So that everyone with very basic technical skill can safely run own, small outlet on the *deepkweb*, mostly *Tor*,yet it should work perfectly on clearnet for anyone willing to have own free shop accepting **ONLY** cryptocurrencies, that allow balance checking and private key sweeping.
+
+Can be used on clear web as well, with the same ease, just remember to put proper setting in config.
 
 So, **Alliu₷hop** was born, very lightweight *python3/flask* shop, made with deepweb in mind.
 
