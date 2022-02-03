@@ -4,8 +4,8 @@
 
 ## Update
 
-Small update from 03.02.2022 - due to improved circumstances, I am able to resume working on Allium. 
-This is test commit from renewed desktop.
+*Small update from 03.02.2022 - due to improved circumstances, I am able to resume working on Allium. 
+This is test commit from renewed desktop, and will fade away from further README*
 
 ## Introduction
 
