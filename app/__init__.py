@@ -58,6 +58,7 @@ with app.app_context():
             models.populate.populate_tables(db)
 
 app.register_blueprint(routes.base.base_blueprint)
+app.register_blueprint(routes.item.item_blueprint)
 
 app.register_blueprint(routes.admin.admin_blueprint) #registering blueprints for admin
 app.register_blueprint(routes.admin_item.admin_item_blueprint) #registering blueprints for admin_item

@@ -1,0 +1,22 @@
+{% if items|length>0 %}
+{% for item in items %}
+<table style="margin:3%;width: 94%;" class="table table-striped">
+    <thead>
+    <tr>
+        <th colspan="100%">There is item: {{item.name}}
+        <img style="max-width: 220px;"  align="left" src="/picture/{{item.pic_name}}">
+        </th>
+        
+    </tr>
+    </thead>
+</table>
+{% endfor %}
+{% else %}
+<table style="margin:3%;width: 94%;" class="table table-striped">
+    <thead>
+    <tr>
+        <th colspan="100%">No such item (404)</th>
+    </tr>
+    </thead>
+</table>
+{% endif %}
