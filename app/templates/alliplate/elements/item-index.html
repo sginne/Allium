@@ -4,12 +4,13 @@
     <thead>
     <tr>
 	    <td width="250px" style="vertical-align: top;">
-           <div "float-left popover popover-right">
+           <div class="float-left popover popover-right">
            <img style="max-width: 220px;" class="card mx-2" align="left" src="/picture/{{item.pic_name}}">
            </div>
         </td>
            <td width="85%:" style="vertical-align: top;">
-               
+					<h6>{{item.short_description}}</h6>
+
                     <h6>
                         Price:
                         {% if item.fiat_crypto_main_flag=='fiat'%}

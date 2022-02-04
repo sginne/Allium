@@ -22,6 +22,9 @@
                     </label>
                 </div>
                 <hr>
+                <label>{{form.short_description.label}}</label>
+                <input type="text" name="{{form.short_description.name}}" value="{{items[0].short_description}}">
+
                 <label>{{form.description.label}}</label>
                 <br>
                 <textarea style="width: 80%;" rows="10" name="{{form.description.name}}" >{{items[0].description}}</textarea>

@@ -15,6 +15,7 @@ class ItemForm(FlaskForm):
     pic_name=StringField('Head picture:')
     amount=StringField('Amount(-1=∞)')
     currency=RadioField('FIAT/Crypto main flag',choices=[(1, 'fiat'), (2, 'crypto')],default=1)
+    short_description=StringField('Small description')
     submit = SubmitField('')
 
 
@@ -55,6 +56,7 @@ def modify_item(action='default',post_id=None):
         if action=='modify':
             #post_id to modify
             item=db.session.query(models.Item).join(models.Fiat_currency).join(models.Crypto_currency).filter(models.Item.price_crypto_id==models.Crypto_currency.id).filter(models.Item.price_fiat_id==models.Fiat_currency.id).filter(models.Item.id==post_id).all()
+            print(item[0].short_description)
             modify_form=ItemForm()
             if request.method=='POST':
                 item[0].name=modify_form.name.data
@@ -63,6 +65,7 @@ def modify_item(action='default',post_id=None):
                 item[0].price_fiat=modify_form.price_fiat.data
                 item[0].amount=modify_form.amount.data
                 item[0].pic_name=modify_form.pic_name.data
+                item[0].short_description=modify_form.short_description.data
                 print(modify_form.pic_name.data)
                 print(modify_form.description.data)
                 if modify_form.currency.data=='1':
