@@ -20,6 +20,7 @@ def item(item_id):
 	finally:
 		pass
 	item = db.session.query(models.Item).filter_by(id=item_id).all()
+	item=utils.markup_list_descriptions(item)
 	rate=app.currency_module.exchange_rate
 	pictures = models.Picture.query.all()
 
