@@ -26,7 +26,8 @@ class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     name = db.Column(db.String(64),nullable=False)
     description = db.Column(db.String(4096))
-    short_description=db.Column(db.String(4096))
+    short_description=db.Column(db.String(256))
+    amount_palette=db.Column(db.String(256))
     pic_name=db.Column(db.String(64))
     amount=db.Column(db.Integer,default=0)
 

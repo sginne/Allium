@@ -14,6 +14,7 @@ class ItemForm(FlaskForm):
     price_fiat=FloatField('FIAT price')
     pic_name=StringField('Head picture:')
     amount=StringField('Amount(-1=∞)')
+    amount_palette=StringField('1,2,3,4,5 - sell amount presets')
     currency=RadioField('FIAT/Crypto main flag',choices=[(1, 'fiat'), (2, 'crypto')],default=1)
     short_description=StringField('Small description')
     submit = SubmitField('')
@@ -64,6 +65,7 @@ def modify_item(action='default',post_id=None):
                 item[0].price_crypto=modify_form.price_crypto.data
                 item[0].price_fiat=modify_form.price_fiat.data
                 item[0].amount=modify_form.amount.data
+                item[0].amount_palette=modify_form.amount_palette.data
                 item[0].pic_name=modify_form.pic_name.data
                 item[0].short_description=modify_form.short_description.data
                 print(modify_form.pic_name.data)
