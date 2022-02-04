@@ -35,6 +35,7 @@ So, **Alliu₷hop** was born, very lightweight *python3/flask* shop, made with d
 
 * python3 -m venv venv
 * source venv/bin/activate
+* pip3 install -r requirements.txt
 * database in App/db/data.sql, recreate #fixme
 * False for SSL_Enabled or cryptolibraries #fixme
 
