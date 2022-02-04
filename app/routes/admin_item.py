@@ -57,7 +57,6 @@ def modify_item(action='default',post_id=None):
         if action=='modify':
             #post_id to modify
             item=db.session.query(models.Item).join(models.Fiat_currency).join(models.Crypto_currency).filter(models.Item.price_crypto_id==models.Crypto_currency.id).filter(models.Item.price_fiat_id==models.Fiat_currency.id).filter(models.Item.id==post_id).all()
-            print(item[0].short_description)
             modify_form=ItemForm()
             if request.method=='POST':
                 item[0].name=modify_form.name.data
@@ -68,8 +67,6 @@ def modify_item(action='default',post_id=None):
                 item[0].amount_palette=modify_form.amount_palette.data
                 item[0].pic_name=modify_form.pic_name.data
                 item[0].short_description=modify_form.short_description.data
-                print(modify_form.pic_name.data)
-                print(modify_form.description.data)
                 if modify_form.currency.data=='1':
                     item[0].fiat_crypto_main_flag='fiat'
                 else:

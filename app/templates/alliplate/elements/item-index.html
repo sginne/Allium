@@ -9,7 +9,7 @@
            </div>
         </td>
            <td width="85%:" style="vertical-align: top;">
-					<h6>{{item.short_description}}</h6>
+					<h6>{{item.short_description|safe}}</h6>
 
                     <h6>
                         Price:
@@ -22,6 +22,16 @@
                         {% endif %}
                         </h6>
                         {{item.description|safe}}
+                        <br>
+                        <hr>
+                        Buy: 
+                        {% for amount_page in item.amount_palette %}
+                        <a href="/order/{{item.id}}/{{amount_page}}">{{amount_page}}</a>
+                        {% endfor %}
+                        items
+                        
+                        
+                       
                     </td>
  
     </tr>
