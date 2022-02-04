@@ -4,7 +4,16 @@
     <thead>
     <tr>
         <th colspan="100%">There is item: {{item.name}}
+        <br>
         <img style="max-width: 220px;"  align="left" src="/picture/{{item.pic_name}}">
+        
+        Price:
+        {% if item.fiat_crypto_main_flag=='fiat'%}
+        {{(item.price_fiat|round(2)|string).rstrip('0').rstrip('.')}}{{fiat_name}}
+        {% endif %}
+        {% if item.fiat_crypto_main_flag=='crypto'%}
+        {{(item.price_crypto|round(4)|string).rstrip('0').rstrip('.')}}{{crypto_name}}
+        {% endif %}
         </th>
         
     </tr>
