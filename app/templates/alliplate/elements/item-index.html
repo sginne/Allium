@@ -26,7 +26,9 @@
                         <hr>
                         Buy: 
                         {% for amount_page in item.amount_palette %}
-                        <a href="/order/{{item.id}}/{{amount_page}}">{{amount_page}}</a>
+                        {% if ((item.amount<0) or (amount_page|int<=item.amount)) %}
+                        <a href="/order/{{item.id}}/{{amount_page}}/">{{amount_page}}</a>
+                        {% endif %}
                         {% endfor %}
                         items
                         
