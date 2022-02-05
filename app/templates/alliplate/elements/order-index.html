@@ -14,7 +14,7 @@
                     <h6>
                         Price:
                         {% if item.fiat_crypto_main_flag=='fiat'%}
-                        {{(item.price_fiat|round(2)|string).rstrip('0').rstrip('.')}}{{fiat_name}}
+                        {{((item.price_fiat*amount)|round(2)|string).rstrip('0').rstrip('.')}}{{fiat_name}}
                         {% endif %}
 
                         {% if item.fiat_crypto_main_flag=='crypto'%}
@@ -23,14 +23,6 @@
                         </h6>
                         {{item.description|safe}}
                         <br>
-                        <hr>
-                        Buy: 
-                        {% for amount_page in item.amount_palette %}
-                        {% if ((item.amount<0) or (amount_page|int<=item.amount)) %}
-                        <a href="/order/{{item.id}}/{{amount_page}}/">{{amount_page}}</a>
-                        {% endif %}
-                        {% endfor %}
-                        items
                         
                         
                        

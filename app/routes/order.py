@@ -27,4 +27,4 @@ def order(item_id,amount):
 	item = db.session.query(models.Item).filter_by(id=item_id).all()
 
 
-	return render_template(current_app.config['TEMPLATE_NAME']+'/order.html',rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name,items=item,pictures=pictures)
+	return render_template(current_app.config['TEMPLATE_NAME']+'/order.html',amount=amount,rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name,items=item,pictures=pictures)
