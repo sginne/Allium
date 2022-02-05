@@ -1,0 +1,51 @@
+{% if items|length>0 %}
+{% for item in items %}
+<table style="margin:3%;width: 94%;" class="table table-striped">
+    <thead>
+    <tr>
+	    <td width="250px" style="vertical-align: top;">
+           <div class="float-left popover popover-right">
+           <img style="max-width: 220px;" class="card mx-2" align="left" src="/picture/{{item.pic_name}}">
+           </div>
+        </td>
+           <td width="85%:" style="vertical-align: top;">
+					<h6>{{item.short_description|safe}}</h6>
+
+                    <h6>
+                        Price:
+                        {% if item.fiat_crypto_main_flag=='fiat'%}
+                        {{(item.price_fiat|round(2)|string).rstrip('0').rstrip('.')}}{{fiat_name}}
+                        {% endif %}
+
+                        {% if item.fiat_crypto_main_flag=='crypto'%}
+                        {{(item.price_crypto|round(4)|string).rstrip('0').rstrip('.')}}{{crypto_name}}
+                        {% endif %}
+                        </h6>
+                        {{item.description|safe}}
+                        <br>
+                        <hr>
+                        Buy: 
+                        {% for amount_page in item.amount_palette %}
+                        {% if ((item.amount<0) or (amount_page|int<=item.amount)) %}
+                        <a href="/order/{{item.id}}/{{amount_page}}/">{{amount_page}}</a>
+                        {% endif %}
+                        {% endfor %}
+                        items
+                        
+                        
+                       
+                    </td>
+ 
+    </tr>
+    </thead>
+</table>
+{% endfor %}
+{% else %}
+<table style="margin:3%;width: 94%;" class="table table-striped">
+    <thead>
+    <tr>
+        <th colspan="100%">No such item (404)</th>
+    </tr>
+    </thead>
+</table>
+{% endif %}
