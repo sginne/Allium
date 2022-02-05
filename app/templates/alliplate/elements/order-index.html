@@ -12,7 +12,7 @@
 					<h6>{{item.short_description|safe}}</h6>
 
                     <h6>
-                        Price:
+                        Price for ({{item.name}})x{{amount}} is
                         {% if item.fiat_crypto_main_flag=='fiat'%}
                         {{((item.price_fiat*amount)|round(2)|string).rstrip('0').rstrip('.')}}{{fiat_name}}
                         {% endif %}

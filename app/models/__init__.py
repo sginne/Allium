@@ -3,7 +3,7 @@
 from .. import db
 from . import populate
 
-all_tables=["items","pictures","picture_containers","fiat_currency","crypto_currency"]
+all_tables=["items","pictures","picture_containers","fiat_currency","crypto_currency","orders"]
 class Fiat_currency(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
@@ -17,6 +17,12 @@ class Crypto_currency(db.Model):
     name=db.Column(db.String(10))
     sign=db.Column(db.String(2))
     __tablename__ = "crypto_currency"
+class Orders(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    salt=db.Column(db.String(10))
+	
+    __tablename__ = "orders"
+
 
 #goods
 class Item(db.Model):
