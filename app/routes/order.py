@@ -7,6 +7,7 @@ from .. import utils
 from app import db,models,currency
 
 
+
 class OrderForm(FlaskForm):
     address = TextAreaField('Address:')
     submit = SubmitField('Submit')
@@ -28,6 +29,7 @@ def order(item_id,amount):
 	rate=app.currency_module.exchange_rate
 	pictures = models.Picture.query.all()
 	item = db.session.query(models.Item).filter_by(id=item_id).all()
+	print (app.currency_module.generate_private_key().to_string().hex())
 
 
 	return render_template(current_app.config['TEMPLATE_NAME']+'/order.html',form=order_form,amount=amount,rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name,items=item,pictures=pictures)
