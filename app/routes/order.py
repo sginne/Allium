@@ -1,16 +1,16 @@
 from flask import Response,Blueprint, render_template, session, request, make_response,abort,redirect
-
+from flask_wtf import FlaskForm
 from wtforms import TextAreaField,StringField,SubmitField,PasswordField,TextField,HiddenField
-#from flask import current_app as app
 from flask import current_app
-#from .. import currency
 import app
 from .. import utils
-
 from app import db,models,currency
 
-order_blueprint = Blueprint('order', __name__) #registering admin blueprints
 
+class OrderForm(FlaskForm):
+    address = TextAreaField('Address:')
+
+order_blueprint = Blueprint('order', __name__) 
 @order_blueprint.route('/order/<item_id>/<amount>/',methods=['GET'])
 def order(item_id,amount):
 	try:
