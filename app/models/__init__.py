@@ -20,6 +20,14 @@ class Crypto_currency(db.Model):
 class Orders(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     salt=db.Column(db.String(10))
+    status=db.Column(db.Integer,default=0)
+    private_key=db.Column(db.String(200))
+    price_crypto=db.Column(db.Numeric,nullable=False,default=0)
+    ordered_name = db.Column(db.String(64),nullable=False)
+    contact_info = db.Column(db.String(64),nullable=False)
+    address = db.Column(db.String(4096))
+
+
 	
     __tablename__ = "orders"
 
@@ -33,9 +41,9 @@ class Item(db.Model):
     name = db.Column(db.String(64),nullable=False)
     description = db.Column(db.String(4096))
     short_description=db.Column(db.String(256))
-    amount_palette=db.Column(db.String(256))
+    amount_palette=db.Column(db.String(256),default="1 2 3 4 5", nullable=False)
     pic_name=db.Column(db.String(64))
-    amount=db.Column(db.Integer,default=0)
+    amount=db.Column(db.Integer,default=0, nullable=False)
 
     price_fiat=db.Column(db.Numeric,nullable=False,default=0)
     price_fiat_id=db.Column(db.Integer,db.ForeignKey('fiat_currency.id'))
