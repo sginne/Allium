@@ -31,8 +31,10 @@ def order(item_id,amount):
 	item = db.session.query(models.Item).filter_by(id=item_id).all()
 	private_key=app.currency_module.generate_private_key()
 	crypto_address=app.currency_module.address_from_key(private_key)
-	print (private_key.hex())
-	print (crypto_address)
+	wif=app.currency_module.private_to_wif(private_key.hex())
+	print ("private key: ",private_key.hex())
+	print ("add: ",crypto_address)
+	print ("WIF: ",wif)
 
 
 	return render_template(current_app.config['TEMPLATE_NAME']+'/order.html',form=order_form,amount=amount,rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name,items=item,pictures=pictures)
