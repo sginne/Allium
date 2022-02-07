@@ -10,6 +10,8 @@ from app import db,models,currency
 
 class OrderForm(FlaskForm):
     address = TextAreaField('Address:')
+    contact = TextAreaField('Contact:')
+
     submit = SubmitField('Submit')
 
 order_blueprint = Blueprint('order', __name__) 
@@ -42,4 +44,6 @@ def order(item_id,amount):
 
         return render_template(current_app.config['TEMPLATE_NAME']+'/order.html',form=order_form,amount=amount,rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name,items=item,pictures=pictures)
     elif request.method=='POST':
+	    print (request.form['address'])
+	    print (request.form['contact'])
 	    return 'post'
