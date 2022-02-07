@@ -26,7 +26,14 @@
                         <hr>
                         <label>{{form.address.label}}</label><br>
                         <textarea style="width: 60%;" rows="5" name="{{form.address.name}}" ></textarea>
-						<input type="submit" class="btn btn-primary">
+						<br>
+						Please leave some contact information:
+						<br>
+						<form class="form-group" method="POST">
+						<input type="text" name="{{form.address.name}}" value="">
+
+						<input type="submit" class="btn btn-primary" value="Make order">
+						</form>
 
                         
                         
