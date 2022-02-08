@@ -21,11 +21,12 @@ class Orders(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     salt=db.Column(db.String(10))
     status=db.Column(db.Integer,default=0)
-    private_key=db.Column(db.String(200))
+    private_key=db.Column(db.Text)
     price_crypto=db.Column(db.Numeric,nullable=False,default=0)
     ordered_name = db.Column(db.String(64),nullable=False)
     contact_info = db.Column(db.String(64),nullable=False)
     address = db.Column(db.String(4096))
+    date=db.Column(db.Integer,nullable=False)
 
 
 	

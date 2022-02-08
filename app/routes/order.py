@@ -5,6 +5,7 @@ from flask import current_app
 import app
 from .. import utils
 from app import db,models,currency
+from datetime import datetime
 
 
 
@@ -45,16 +46,30 @@ def order(item_id,amount):
         return render_template(current_app.config['TEMPLATE_NAME']+'/order.html',form=order_form,amount=amount,rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name,items=item,pictures=pictures)
     elif request.method=='POST':
         
+        rate=app.currency_module.exchange_rate
         try:
             item_id=str(int(item_id))
-            amount=int(amount) #fixme why is it integer apriori?
+            amount=int(amount) 
         except:
             abort(404)
         finally:
             pass
         private_key=app.currency_module.generate_private_key()
-        print (private_key)
-		#new_order=models.Orders
-	    #print (request.form['address'])
+        item = db.session.query(models.Item).filter_by(id=item_id).all()
+        try:
+            if (item[0].fiat_crypto_main_flag=='crypto'):
+                order_price=float(item[0].price_crypto)*amount
+            else:
+                order_price=float(item[0].price_fiat*amount)/rate
+        except:
+            pass
+        finally:
+            pass
+        current_datetime=datetime.now()
+        print(private_key.hex())
+        new_order=models.Orders(status=0,private_key=private_key.hex(),price_crypto=order_price,ordered_name=item[0].name,address=str(request.form['address']),contact_info=str(request.form['contact']),date=int(round(current_datetime.timestamp())))
+        db.session.add(new_order)
+        db.session.commit()
+        #print (request.form['address'])
 	    #print (request.form['contact'])
         return 'post'
