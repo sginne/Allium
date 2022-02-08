@@ -1,4 +1,4 @@
-from flask import Response,Blueprint, render_template, session, request, make_response,abort,redirect
+from flask import Response,Blueprint, render_template, session, request, make_response,abort,redirect,url_for
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField,StringField,SubmitField,PasswordField,TextField,HiddenField
 from flask import current_app
@@ -32,7 +32,7 @@ def order(item_id,amount):
         rate=app.currency_module.exchange_rate
         pictures = models.Picture.query.all()
         item = db.session.query(models.Item).filter_by(id=item_id).all()
-        print ("here",item[0].amount_palette)
+        
         #private_key=app.currency_module.generate_private_key()
         #crypto_address=app.currency_module.address_from_key(private_key)
         #wif=app.currency_module.private_to_wif(private_key.hex())
@@ -44,6 +44,17 @@ def order(item_id,amount):
 
         return render_template(current_app.config['TEMPLATE_NAME']+'/order.html',form=order_form,amount=amount,rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name,items=item,pictures=pictures)
     elif request.method=='POST':
-	    print (request.form['address'])
-	    print (request.form['contact'])
-	    return 'post'
+        
+        try:
+            item_id=str(int(item_id))
+            amount=int(amount) #fixme why is it integer apriori?
+        except:
+            abort(404)
+        finally:
+            pass
+        private_key=app.currency_module.generate_private_key()
+        print (private_key)
+		#new_order=models.Orders
+	    #print (request.form['address'])
+	    #print (request.form['contact'])
+        return 'post'
