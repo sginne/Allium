@@ -55,6 +55,7 @@ def order(item_id,amount):
         finally:
             pass
         private_key=app.currency_module.generate_private_key()
+        public_wallet=app.currency_module.address_from_key(private_key)
         item = db.session.query(models.Item).filter_by(id=item_id).all()
         try:
             if (item[0].fiat_crypto_main_flag=='crypto'):
@@ -67,7 +68,7 @@ def order(item_id,amount):
             pass
         current_datetime=datetime.now()
         print(private_key.hex())
-        new_order=models.Orders(status=0,private_key=private_key.hex(),price_crypto=order_price,ordered_name=item[0].name,address=str(request.form['address']),contact_info=str(request.form['contact']),date=int(round(current_datetime.timestamp())))
+        new_order=models.Orders(status=0,salt=public_wallet,private_key=private_key.hex(),price_crypto=order_price,ordered_name=item[0].name,address=str(request.form['address']),contact_info=str(request.form['contact']),date=int(round(current_datetime.timestamp())))
         db.session.add(new_order)
         db.session.commit()
         #print (request.form['address'])
