@@ -16,6 +16,9 @@ class OrderForm(FlaskForm):
     submit = SubmitField('Submit')
 
 order_blueprint = Blueprint('order', __name__) 
+@order_blueprint.route('/order/w/<wallet>/',methods=['GET'])
+def done_order(wallet):
+    return wallet
 @order_blueprint.route('/order/<item_id>/<amount>/',methods=['GET','POST'])
 def order(item_id,amount):
     try:
@@ -45,7 +48,7 @@ def order(item_id,amount):
 
         return render_template(current_app.config['TEMPLATE_NAME']+'/order.html',form=order_form,amount=amount,rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name,items=item,pictures=pictures)
     elif request.method=='POST':
-        
+        if request.form['contact']=='' or request.form['address']=='': return 'Please fill in information'
         rate=app.currency_module.exchange_rate
         try:
             item_id=str(int(item_id))
@@ -67,10 +70,10 @@ def order(item_id,amount):
         finally:
             pass
         current_datetime=datetime.now()
-        print(private_key.hex())
+        
         new_order=models.Orders(status=0,public_wallet=public_wallet,private_key=private_key.hex(),price_crypto=order_price,ordered_name=item[0].name,address=str(request.form['address']),contact_info=str(request.form['contact']),date=int(round(current_datetime.timestamp())))
         db.session.add(new_order)
         db.session.commit()
         #print (request.form['address'])
 	    #print (request.form['contact'])
-        return 'post'
+        return redirect("/order/w/{}".format(public_wallet))
