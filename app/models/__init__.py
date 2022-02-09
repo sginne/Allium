@@ -19,7 +19,7 @@ class Crypto_currency(db.Model):
     __tablename__ = "crypto_currency"
 class Orders(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    salt=db.Column(db.String(10))
+    public_wallet=db.Column(db.String(100))
     status=db.Column(db.Integer,default=0)
     private_key=db.Column(db.Text)
     price_crypto=db.Column(db.Numeric,nullable=False,default=0)

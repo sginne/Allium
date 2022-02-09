@@ -68,7 +68,7 @@ def order(item_id,amount):
             pass
         current_datetime=datetime.now()
         print(private_key.hex())
-        new_order=models.Orders(status=0,salt=public_wallet,private_key=private_key.hex(),price_crypto=order_price,ordered_name=item[0].name,address=str(request.form['address']),contact_info=str(request.form['contact']),date=int(round(current_datetime.timestamp())))
+        new_order=models.Orders(status=0,public_wallet=public_wallet,private_key=private_key.hex(),price_crypto=order_price,ordered_name=item[0].name,address=str(request.form['address']),contact_info=str(request.form['contact']),date=int(round(current_datetime.timestamp())))
         db.session.add(new_order)
         db.session.commit()
         #print (request.form['address'])
