@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+{% include config['TEMPLATE_NAME'] ~ "/elements/head-base.html" %}
+</head>
+<body>
+        <header class="bg-gray">
+        {% include config['TEMPLATE_NAME'] ~ "/elements/header.html" %}
+        </header>
+    {% include config['TEMPLATE_NAME'] ~ "/elements/order-disclaimer.html" %}
+    {% include config['TEMPLATE_NAME'] ~ "/elements/order-index.html" %}
+
+    {% include config['TEMPLATE_NAME'] ~ "/elements/base-rate.html" %}
+</body>
+</html>
+

@@ -26,6 +26,8 @@ class Orders(db.Model):
     ordered_name = db.Column(db.String(64),nullable=False)
     contact_info = db.Column(db.String(64),nullable=False)
     address = db.Column(db.String(4096))
+    comment = db.Column(db.String(4096))
+  
     date=db.Column(db.Integer,nullable=False)
 
 

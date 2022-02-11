@@ -18,7 +18,10 @@ class OrderForm(FlaskForm):
 order_blueprint = Blueprint('order', __name__) 
 @order_blueprint.route('/order/w/<wallet>/',methods=['GET'])
 def done_order(wallet):
-    return wallet
+        #item=utils.markup_list_descriptions(item)
+        rate=app.currency_module.exchange_rate
+        #pictures = models.Picture.query.all()
+        return render_template(current_app.config['TEMPLATE_NAME']+'/payment.html',rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name,wallet=wallet)
 @order_blueprint.route('/order/<item_id>/<amount>/',methods=['GET','POST'])
 def order(item_id,amount):
     try:
