@@ -1,0 +1,21 @@
+{% if wallet|length>0 %}
+<table style="margin:3%;width: 94%;" class="table table-striped">
+    <thead>
+    <tr>
+	    <td width="250px" style="vertical-align: top;">
+    
+					{{wallet}}   
+                    </td>
+ 
+    </tr>
+    </thead>
+</table>
+{% else %}
+<table style="margin:3%;width: 94%;" class="table table-striped">
+    <thead>
+    <tr>
+        <th colspan="100%">No such item (404)</th>
+    </tr>
+    </thead>
+</table>
+{% endif %}
