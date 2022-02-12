@@ -26,6 +26,9 @@ So, **Alliu₷hop** was born, very lightweight *python3/flask* shop, made with d
 * Opensource, no binaries of any kind - you control and own your own shop, and  free to audit and change code as you wish
 * Panic button with ability to reconstruct wif private keys
 
+I've done this project before too, but wroten quickly on the knee, it is very unmaintainable with a lot of shortcuts. Keeping it updated is pain.
+Laffka, however, quite works, and could be found here: https://github.com/eruina/laffka/
+
 ## Installation
 
 * python3 -m venv venv
