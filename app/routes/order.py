@@ -22,17 +22,17 @@ def done_order(wallet):
         try:
             wallet=str(wallet)
             orders = db.session.query(models.Orders).filter_by(public_wallet=wallet).all()
-            print(orders[0])
+            #print(orders[0])
             order_wallet=orders[0].public_wallet
             order_name=orders[0].ordered_name
             order_price=orders[0].price_crypto
         except:
             abort(404)
         finally:pass
-        print (app.currency_module.crypto_name)
+        payment_link=app.currency_module.link(order_wallet,order_price,order_name,"Payment link")
 
         
-        return render_template(current_app.config['TEMPLATE_NAME']+'/payment.html',rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name,wallet=order_wallet,name=order_name,price=order_price)
+        return render_template(current_app.config['TEMPLATE_NAME']+'/payment.html',rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name,wallet=order_wallet,name=order_name,price=order_price,link=payment_link)
         
 @order_blueprint.route('/order/<item_id>/<amount>/',methods=['GET','POST'])
 def order(item_id,amount):
