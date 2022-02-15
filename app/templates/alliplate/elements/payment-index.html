@@ -4,7 +4,12 @@
     <tr>
 	    <td width="250px" style="vertical-align: top;">
     
-					Order for {{name}}<br>
+					Order for {{name}} is 
+                    {% if status==0 %}
+                    made and awaits payment.<br>
+                    {% else %}
+                    {{status}}<br>
+                    {% endif %}
                     Price in {{crypto_name}} {{price}}<br>
                     Please pay to:<br>
                     {{wallet}}<br>

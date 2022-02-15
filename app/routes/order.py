@@ -26,13 +26,14 @@ def done_order(wallet):
             order_wallet=orders[0].public_wallet
             order_name=orders[0].ordered_name
             order_price=orders[0].price_crypto
+            order_status=orders[0].status
         except:
             abort(404)
         finally:pass
         payment_link=app.currency_module.link(order_wallet,order_price,order_name,"Payment link")
 
         
-        return render_template(current_app.config['TEMPLATE_NAME']+'/payment.html',rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name,wallet=order_wallet,name=order_name,price=order_price,link=payment_link)
+        return render_template(current_app.config['TEMPLATE_NAME']+'/payment.html',rate=rate,fiat_name=app.currency_module.fiat_name,crypto_name=app.currency_module.crypto_name,wallet=order_wallet,name=order_name,price=order_price,link=payment_link,status=order_status)
         
 @order_blueprint.route('/order/<item_id>/<amount>/',methods=['GET','POST'])
 def order(item_id,amount):
