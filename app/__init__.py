@@ -1,5 +1,6 @@
 from flask import Flask,render_template,session
 from flask_sqlalchemy import SQLAlchemy
+from flask_apscheduler import APScheduler
 from sqlalchemy import inspect,Integer,Unicode,ForeignKey,Numeric
 from sqlalchemy.orm import relationship
 #from flask_session import Session
@@ -7,7 +8,10 @@ from sqlalchemy_utils import create_database,database_exists
 from sqlalchemy.ext.declarative import declarative_base
 
 
+
 db=SQLAlchemy() #db by SQLAlchemy
+scheduler = APScheduler()
+
 
 from . import models #database models
 from . import routes #blueprints
@@ -38,6 +42,12 @@ app.config['SECRET_KEY']=secret_key
 app.config['WTF_CSRF_SECRET_KEY']=secret_key
 
 db.init_app(app) #db for app
+scheduler.init_app(app)
+
+def hello(): print("Thisis scheduled task")
+app.apscheduler.add_job(func=hello, trigger="interval", seconds=60,id="test")
+scheduler.start()
+
 #app.app_context().push()
 if app.config['SSL_ENABLED']=='True':
     import ssl
