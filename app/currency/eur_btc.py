@@ -11,6 +11,8 @@ class FiatCrypto:
     fiat_name="€"
     crypto_name="₿"
     def __init__(self):
+        self.update()
+    def update(self):
         self.read_exchange_rate()
     def link(self,address,amount,message,body):
         return ("<a rel='payment' href='bitcoin:{}?amount={}?message={}'>{}</a>".format(address,amount,message,body))

@@ -44,8 +44,10 @@ app.config['WTF_CSRF_SECRET_KEY']=secret_key
 db.init_app(app) #db for app
 scheduler.init_app(app)
 
-def hello(): print("Thisis scheduled task")
-app.apscheduler.add_job(func=hello, trigger="interval", seconds=60,id="test")
+def update_rate():
+    currency_module.update()
+    print("Updated, rate is {}".format(currency_module.exchange_rate))
+app.apscheduler.add_job(func=update_rate, trigger="interval", seconds=app.config['UPDATE_RATE_PERIOD'],id="update_rate")
 scheduler.start()
 
 #app.app_context().push()
