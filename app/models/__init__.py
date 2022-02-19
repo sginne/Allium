@@ -2,6 +2,12 @@
 #import app
 from .. import db
 from . import populate
+import enum
+
+class Status(enum.Enum):
+    one = 1
+    two = 2
+    three = 3
 
 all_tables=["items","pictures","picture_containers","fiat_currency","crypto_currency","orders"]
 class Fiat_currency(db.Model):
@@ -20,7 +26,7 @@ class Crypto_currency(db.Model):
 class Orders(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     public_wallet=db.Column(db.String(100))
-    status=db.Column(db.Integer,default=0)
+    status=db.Column(db.Enum(Status))
     private_key=db.Column(db.Text)
     price_crypto=db.Column(db.Numeric,nullable=False,default=0)
     ordered_name = db.Column(db.String(64),nullable=False)
