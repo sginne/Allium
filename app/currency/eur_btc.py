@@ -19,7 +19,9 @@ class FiatCrypto:
     def read_exchange_rate(self):
         data=self.http.json_loads(self.http.url_request(self.exchange_url))
         self.exchange_rate = data['EUR']['last']
-        
+    def read_wallet(self, wallet):
+        data=self.http.json_loads(self.http.url_request("https://blockchain.info/rawaddr/{}".format(wallet)))
+        return data
     def generate_private_key(self):
         ecdsaPrivateKey = ecdsa.SigningKey.generate(curve=ecdsa.SECP256k1)	
         return ecdsaPrivateKey.to_string()

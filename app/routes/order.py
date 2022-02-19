@@ -18,6 +18,8 @@ class OrderForm(FlaskForm):
 order_blueprint = Blueprint('order', __name__) 
 @order_blueprint.route('/order/w/<wallet>/',methods=['GET'])
 def done_order(wallet):
+        print ("here")
+        print(app.currency_module.read_wallet(wallet))
         rate=app.currency_module.exchange_rate
         try:
             wallet=str(wallet)
