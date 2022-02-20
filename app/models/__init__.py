@@ -5,9 +5,12 @@ from . import populate
 import enum
 
 class Status(enum.Enum):
-    one = 1
-    two = 2
-    three = 3
+    placed = 1
+    partially_paid = 2
+    fully_paid = 3
+    aknowledged = 4
+    processed = 5
+    
 
 all_tables=["items","pictures","picture_containers","fiat_currency","crypto_currency","orders"]
 class Fiat_currency(db.Model):
@@ -33,6 +36,7 @@ class Orders(db.Model):
     contact_info = db.Column(db.String(64),nullable=False)
     address = db.Column(db.String(4096))
     comment = db.Column(db.String(4096))
+    review = db.Column(db.String(4096))
   
     date=db.Column(db.Integer,nullable=False)
 
