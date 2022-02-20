@@ -10,6 +10,7 @@ class Status(enum.Enum):
     fully_paid = "fully_paid"
     acknowledged = "acknowledged"
     processed = "processed"
+    archived = "archived"
     
 
 all_tables=["items","pictures","picture_containers","fiat_currency","crypto_currency","orders"]
