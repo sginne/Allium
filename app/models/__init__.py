@@ -5,11 +5,11 @@ from . import populate
 import enum
 
 class Status(enum.Enum):
-    placed = 1
-    partially_paid = 2
-    fully_paid = 3
-    aknowledged = 4
-    processed = 5
+    placed = "placed"
+    partially_paid = "partially_paid"
+    fully_paid = "fully_paid"
+    acknowledged = "acknowledged"
+    processed = "processed"
     
 
 all_tables=["items","pictures","picture_containers","fiat_currency","crypto_currency","orders"]
@@ -29,7 +29,7 @@ class Crypto_currency(db.Model):
 class Orders(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     public_wallet=db.Column(db.String(100))
-    status=db.Column(db.Enum(Status))
+    status=db.Column(db.Enum(Status),nullable=False,default=Status.placed)
     private_key=db.Column(db.Text)
     price_crypto=db.Column(db.Numeric,nullable=False,default=0)
     ordered_name = db.Column(db.String(64),nullable=False)
