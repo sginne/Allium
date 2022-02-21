@@ -12,7 +12,11 @@ def process_orders(app,engine):
     with current_app.app_context():
         currency_module=currency.FiatCurrency(app.config['CURRENCY']).module
     for order in orders:
-        print(currency_module.read_wallet(order.public_wallet))
+        status=str(order.status)
+        data=currency_module.read_wallet(order.public_wallet)
+        if status=="Status.placed":
+            print(data)
+        #print(currency_module.read_wallet(order.public_wallet))
        
 def password_hashing(password):
     """
