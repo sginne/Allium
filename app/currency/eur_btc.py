@@ -22,6 +22,8 @@ class FiatCrypto:
     def read_wallet(self, wallet):
         data=self.http.json_loads(self.http.url_request("https://blockchain.info/rawaddr/{}".format(wallet)))
         return data
+    def read_wallet_final_balance(self,wallet):
+        return self.read_wallet(wallet)['final_balance']
     def generate_private_key(self):
         ecdsaPrivateKey = ecdsa.SigningKey.generate(curve=ecdsa.SECP256k1)	
         return ecdsaPrivateKey.to_string()
