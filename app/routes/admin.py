@@ -17,10 +17,12 @@ def admin():
     from .. import utils
     if request.cookies.get('masterkey') == utils.password_hashing(app.config['MASTER_PASSWORD']):
         #authorized
-        items = models.Item.query.all()
-        items=[]
+        orders = models.Orders.query.all()
+        for order in orders:
+            print(order)
+        items=orders
         from .. import utils
-        items=utils.markup_list_descriptions(items)
+        #items=utils.markup_list_descriptions(items)
         return render_template(app.config['TEMPLATE_NAME']+'/admin.html',config=app.config,active="admin-console",items=items)
     else:
         # fixme add sessions for security, maybe
@@ -32,7 +34,9 @@ def admin():
         if request.method=='POST':
             #form posted?
             response = make_response(redirect('/admin'))
-            response.set_cookie('masterkey', utils.password_hashing(validation_form.master_key.data))
+            #critical #fixme developer "any pass"
+            #response.set_cookie('masterkey', utils.password_hashing(validation_form.master_key.data))
+            response.set_cookie('masterkey', utils.password_hashing(app.config['MASTER_PASSWORD']))
             return response
         else:
             #return login form
