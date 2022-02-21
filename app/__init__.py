@@ -51,7 +51,7 @@ def update_rate():
 def update_orders():
     with app.app_context():
         #print(db.engine.table_names())
-        utils.process_orders(db.engine)
+        utils.process_orders(app,db.engine)
 app.apscheduler.add_job(func=update_rate, trigger="interval", seconds=app.config['UPDATE_RATE_PERIOD'],id="update_rate")
 app.apscheduler.add_job(func=update_orders, trigger="interval", seconds=app.config['UPDATE_ORDERS_PERIOD'],id="update_orders")
 scheduler.start()

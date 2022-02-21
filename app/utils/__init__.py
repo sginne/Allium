@@ -5,12 +5,14 @@ from flask import current_app
 from . import http_module
 from sqlalchemy import create_engine,MetaData
 import sqlalchemy
-from .. import models
-def process_orders(engine):
+from .. import models,currency
+def process_orders(app,engine):
     print(engine.table_names())
     orders = models.Orders.query.all()
+    with current_app.app_context():
+        currency_module=currency.FiatCurrency(app.config['CURRENCY']).module
     for order in orders:
-        print(order.ordered_name)
+        print(currency_module.read_wallet(order.public_wallet))
        
 def password_hashing(password):
     """
