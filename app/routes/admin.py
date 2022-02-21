@@ -23,7 +23,7 @@ def admin():
         items=orders
         from .. import utils
         #items=utils.markup_list_descriptions(items)
-        return render_template(app.config['TEMPLATE_NAME']+'/admin.html',config=app.config,active="admin-console",items=items)
+        return render_template(app.config['TEMPLATE_NAME']+'/admin.html',config=app.config,active="admin-console",orders=orders)
     else:
         # fixme add sessions for security, maybe
         #not authorized, may by form posted

@@ -8,21 +8,21 @@
         {% include config['TEMPLATE_NAME'] ~ "/elements/header.html" %}
         {% include config['TEMPLATE_NAME'] ~ "/elements/admin-menu.html" %}
     </header>
-    {% if items|length>0 %}
+    {% if orders|length>0 %}
 
         <table style="margin:3%;width: 94%;" class="table table-striped">
             <thead>
                 <tr>
-                    <th colspan="100%">Items listed:</th>
+                    <th colspan="100%">Orders:</th>
                 </tr>
             </thead>
-            {% for item in items %}
+            {% for order in orders %}
                 <tr>
                     <td width="25%;">
-                        {{item.name}}
+                        {{order.ordered_name}}
                     </td>
                     <td>
-                        <div class="d-inline">{{item.description|safe}}</div>
+                        <div class="d-inline">{{order.address}}</div>
                     </td>
                 </tr>
             {% endfor %}
