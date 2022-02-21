@@ -3,13 +3,22 @@ import re
 import hashlib
 from flask import current_app
 from . import http_module
-
+from sqlalchemy import create_engine,MetaData
+import sqlalchemy
+from .. import models
+def process_orders(engine):
+    print(engine.table_names())
+    orders = models.Orders.query.all()
+    for order in orders:
+        print(order.ordered_name)
+       
 def password_hashing(password):
     """
     Returns sha512 from password and app.config['SECRET_KEY']
     :param password: password string
     :return: salted and hashed password
     """
+    print("Something hashed")
     return hashlib.pbkdf2_hmac('sha512',password.encode('utf-8'),current_app.config['SECRET_KEY'].encode('utf-8'),66766).hex()#fix me 66766 is for no reason
 
 def markup(string_to_parse):

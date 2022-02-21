@@ -18,7 +18,7 @@ from . import routes #blueprints
 from . import utils
 from . import currency
 
-
+utils=utils
 
 with open("allium.cfg") as config_file:
     for line in config_file:
@@ -41,16 +41,22 @@ app.secret_key=secret_key
 app.config['SECRET_KEY']=secret_key
 app.config['WTF_CSRF_SECRET_KEY']=secret_key
 
-db.init_app(app) #db for app
+with app.app_context():
+    db.init_app(app) #db for app
 scheduler.init_app(app)
 
 def update_rate():
     currency_module.update()
     print("Updated, rate is {}".format(currency_module.exchange_rate))
+def update_orders():
+    with app.app_context():
+        #print(db.engine.table_names())
+        utils.process_orders(db.engine)
 app.apscheduler.add_job(func=update_rate, trigger="interval", seconds=app.config['UPDATE_RATE_PERIOD'],id="update_rate")
+app.apscheduler.add_job(func=update_orders, trigger="interval", seconds=app.config['UPDATE_ORDERS_PERIOD'],id="update_orders")
 scheduler.start()
 
-#app.app_context().push()
+
 if app.config['SSL_ENABLED']=='True':
     import ssl
     context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
