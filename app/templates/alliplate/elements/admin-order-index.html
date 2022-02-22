@@ -1,0 +1,30 @@
+    {% if orders|length>0 %}
+        
+        <table style="margin:3%;width: 94%;" class="table table-striped">
+            <thead>
+                <tr>
+                    <th colspan="100%">Orders:</th>
+                </tr>
+            </thead>
+            {% for order in orders %}
+                <tr>
+                    <td width="25%;">
+                        {{order.ordered_name}}
+                    </td>
+                    <td>
+                        <div class="d-inline">{{order.address}}</div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+    {% else %}
+        <table style="margin:3%;width: 94%;" class="table table-striped">
+            <thead>
+                <tr>
+                    <th colspan="100%">No items</th>
+                </tr>
+            </thead>
+        </table>
+    {% endif %}
+

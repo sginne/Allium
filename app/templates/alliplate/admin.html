@@ -8,34 +8,8 @@
         {% include config['TEMPLATE_NAME'] ~ "/elements/header.html" %}
         {% include config['TEMPLATE_NAME'] ~ "/elements/admin-menu.html" %}
     </header>
-    {% if orders|length>0 %}
+    test
+    {% include config['TEMPLATE_NAME'] ~ "/elements/admin-order-index.html" %}
 
-        <table style="margin:3%;width: 94%;" class="table table-striped">
-            <thead>
-                <tr>
-                    <th colspan="100%">Orders:</th>
-                </tr>
-            </thead>
-            {% for order in orders %}
-                <tr>
-                    <td width="25%;">
-                        {{order.ordered_name}}
-                    </td>
-                    <td>
-                        <div class="d-inline">{{order.address}}</div>
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
-
-    {% else %}
-        <table style="margin:3%;width: 94%;" class="table table-striped">
-            <thead>
-                <tr>
-                    <th colspan="100%">No items</th>
-                </tr>
-            </thead>
-        </table>
-    {% endif %}
 </body>
 </html>
