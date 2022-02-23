@@ -38,9 +38,12 @@ class Orders(db.Model):
     address = db.Column(db.String(4096))
     comment = db.Column(db.String(4096))
     review = db.Column(db.String(4096))
-  
+    
     date=db.Column(db.Integer,nullable=False)
-
+    
+    total_received=db.Column(db.Numeric,nullable=False,default=0)
+    final_balance=db.Column(db.Numeric,nullable=False,default=0)
+    n_tx=db.Column(db.Numeric,nullable=False,default=0)
 
 	
     __tablename__ = "orders"
