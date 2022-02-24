@@ -9,15 +9,12 @@
             {% for order in orders %}
                 <tr>
                     <td width="25%;">
-                        {{order.ordered_name}}
-                    </td>
-                    <td>
-                        <div class="d-inline">{{order.address}}</div>
+                        {{order.ordered_name}}, with a price {{order.price_crypto}}
+                        <br>
+                        At the moment there has been {{order.n_tx|int}} transactions with total <strong>{{order.final_balance|round(9, 'floor')}}</strong> btc received
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="2">Order price{{order.price_crypto}}</td>
-                </tr>
+
             {% endfor %}
         </table>
 
