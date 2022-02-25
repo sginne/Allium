@@ -11,7 +11,8 @@
                     <td width="25%;">
                         {{order.ordered_name}}, with a price {{order.price_crypto}}
                         <br>
-                        At the moment there has been {{order.n_tx|int}} transactions with total <strong>{{order.final_balance|round(9, 'floor')}}</strong> btc received
+                        At the moment there has been {{order.n_tx|int}} transactions with total {% if (order.final_balance|round(9, 'floor'))>0 %}<strong>{%endif %}
+{{order.final_balance|round(9, 'floor')}}{% if (order.final_balance|round(9, 'floor'))>0 %}<strong>{%endif %} btc received
                     </td>
                 </tr>
 
