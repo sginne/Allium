@@ -18,7 +18,7 @@ def process_orders(app,engine):
         #{'hash160': 'e8bb29a0b2ee355fe3a92c6911011ae88c1e2ca6', 'address': '1NDZynro2f1uSTeM2WWbypH7xDHKgzudHF', 'n_tx': 0, 'n_unredeemed': 0, 'total_received':0, 'total_sent': 0, 'final_balance': 0, 'txs': []}
   
             #print(data)
-            order.total_received=1
+            order.status="fully_paid"
             db.session.commit()
         #print(currency_module.read_wallet(order.public_wallet))
        
