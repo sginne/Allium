@@ -2,6 +2,8 @@
 
 *clearnet or deepweb - your keys are yours, no blockchain downloading. full control for no price*
 
+##Слава Україне!
+
 ## Introduction
 
 **Alliu₷hop** is small, lightweight shopping system supporting ONLY cryptocurrencies.
