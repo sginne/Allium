@@ -9,10 +9,14 @@
             {% for order in orders %}
                 <tr>
                     <td width="25%;">
-                        {{order.ordered_name}}, with a price {{order.price_crypto}}(<em>{{order.status.value}}</em>)
+                        <strong>{{order.ordered_name}}</strong>, with a price {{order.price_crypto}}(<em>{{order.status.value}}</em>)
                         <br>
                         At the moment there has been {{order.n_tx|int}} transactions with total {% if (order.final_balance|round(9, 'floor'))>0 %}<strong>{%endif %}
-{{order.final_balance|round(9, 'floor')}}{% if (order.final_balance|round(9, 'floor'))>0 %}<strong>{%endif %} btc received
+{{order.final_balance|round(9, 'floor')}}{% if (order.final_balance|round(9, 'floor'))>0 %}<strong>{%endif %} btc received(from {{order.price_crypto}}).
+                        <br>
+                        <strong>Wallet: {{order.public_wallet}}</strong><br>
+                        <strong>Private key: {{order.private_key}}</strong>
+                        
                     </td>
                 </tr>
 
