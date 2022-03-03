@@ -4,6 +4,11 @@
 
 ##Слава Україне!
 
+I am Timo, and I am ukrainian, been living in Finland, since 1994.
+Still am ukraїnian. 
+
+Development is bit chaotic due to the war.
+
 ## Introduction
 
 **Alliu₷hop** is small, lightweight shopping system supporting ONLY cryptocurrencies.
