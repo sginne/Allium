@@ -6,6 +6,7 @@ from . import http_module
 from sqlalchemy import create_engine,MetaData
 import sqlalchemy
 from .. import models,currency,db
+import time
 def process_orders(app,engine):
     print(engine.table_names())
     orders = models.Orders.query.all()
@@ -21,6 +22,7 @@ def process_orders(app,engine):
             order.status="fully_paid"
             db.session.commit()
         #print(currency_module.read_wallet(order.public_wallet))
+        time.sleep(app.config['UPDATE_RATE_DELAY'])
        
 def password_hashing(password):
     """
