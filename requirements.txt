@@ -20,5 +20,5 @@ SQLAlchemy-Utils==0.36.1
 tzdata==2021.5
 tzlocal==4.1
 urwid==2.1.0
-Werkzeug==1.0.0
+Werkzeug==2.2.3
 WTForms==2.2.1
